@@ -23,3 +23,9 @@ Quick Start
 4. Start the server `python manage.py runserver`
 
 5. Create a superadmin `python manage.py createsuperuser` then create pages at the admin: `http://localhost:8000/admin`
+
+
+Notes
+------
+
+Obviously the templates are just based stuff. You should always extend those from the actualy project `base` template etc...

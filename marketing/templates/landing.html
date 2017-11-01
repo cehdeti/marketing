@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load i18n staticfiles pages_tags %}
+
+{% block meta_keywords %}
+	{{ landing.seo_keywords }}
+{% endblock %}
+{% block meta_description %}
+	{{ landing.seo_description }}
+{% endblock %}
+{% block extra_meta %}
+    <meta property="og:url"                content="{{ current_url }}" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="{{ landing.title }}" />
+    <meta property="og:description"        content="{{ landing.column_1|striptags|truncatewords:25 }}" />
+    <meta property="og:image"              content="{% static 'images/dexalytics-logo.png' %}" />
+{% endblock extra_meta %}
+
+{% block content %}
+
+	<article class="page-landing">
+			{% if landing.header %}
+			  {% include 'includes/header.html' with page_bg=header_bg_name userPageTitle=landing.title %}
+			{% endif %}
+
+			{% if landing.title_block and not landing.header %}
+			  {% include 'includes/header.html' with page_bg='no-bg' userPageTitle=landing.title %}
+			{% endif %}
+
+		  <section class="page-content page-landing-content{% if landing.sidebar %} has-sidebar{% endif %}">
+
+				{% if landing.sidebar %}
+					<aside class="page-landing-sidebar">
+						{{ landing.sidebar_text|safe }}
+					</aside>
+				{% endif %}
+
+				<div class="page-landing-body {{ landing.columns|lower }}">
+					<div class="row no-gutters">
+							{% if landing.subheader and not landing.title_block and not landing.header %}
+								<header class="page-landing-headers">
+									<h2 class="page-landing-title">{{ landing.title }}</h2>
+									<h3 class="page-landing-subheader">{{ landing.subheader }}</h3>
+								</header>
+							{% else %}
+						    <header class="page-landing-headers">
+							  	<h3 class="page-landing-title">{{ landing.subheader }}</h3>
+							  </header>
+							{% endif %}
+
+							{% if landing.columns == 'HALF' %}
+								<div class="page-content-left">
+									{{ landing.column_1|safe }}
+								</div>
+								<div class="page-content-right">
+									{{ landing.column_2|safe }}
+								</div>
+							{% else %}
+								<div class="col-12 pl-0">
+									{{ landing.column_1|safe }}
+								</div>
+							{% endif %}
+					</div>
+
+					<div class="col-12 pl-0 mt-4">
+						{% if landing.cta %}
+						  {{ cta_html|safe }}
+						{% endif %}
+
+						{% if landing.socials %}
+						  <div class="page-landing-socials">
+						  	<h5 class="h6 text-uppercase">Share this article</h5>
+			   	      <a class="btn btn-dark btn-fob mr-2" href="https://twitter.com/intent/tweet?screen_name=dexalytics&text={{ landing.title }}{{ landing.column_1|striptags|truncatewords:20" data-show-count="false" data-toggle="tooltip" title="Share this article on Twitter">
+			   				  <i class="fa fa-twitter" aria-hidden="true">
+			   					<span class="sr-only">Twitter</span>
+			   					<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+			   				  </i>
+			   				</a>
+			   				<a
+			   					class="btn btn-dark btn-fob"
+			   					href="https://www.facebook.com/dialog/share?app_id=145634995501895&display=popup&href={{current_url}}&redirect_uri={{current_url}}"
+			   					data-toggle="tooltip" title="Share this on Facebook">
+			   				  	<i class="fa fa-facebook" aria-hidden="true">
+			   							<span class="sr-only">Facebook</span>
+			   				  	</i>
+			   				</a>
+			   	    </div>
+						{% endif %}
+					</div>
+				</div>
+
+		  </section>
+
+		  {% if landing.footer %}
+		    {% include 'includes/footer.html' %}
+		  {% endif %}
+	</article>
+{% endblock %}

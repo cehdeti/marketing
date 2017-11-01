@@ -4,7 +4,6 @@ from pages.models import Page
 from .models import Marketing
 import os
 
-# Create your views here.
 def marketing_page(request, slug):
 
 	current_page = Page.objects.from_path(request.path, settings.LANGUAGE_CODE)
@@ -16,4 +15,4 @@ def marketing_page(request, slug):
 
 	cta_html = '<a href="%s" class="page-landing-cta">%s</a>' % (landing.cta_url, landing.cta_text)
 
-	return render(request, 'pages/landing.html', locals())
+	return render(request, 'landing.html', locals())

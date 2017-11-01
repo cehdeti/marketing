@@ -29,7 +29,7 @@ class Marketing(models.Model):
   title = models.CharField('Page Title', max_length=200)
   slug = models.SlugField(max_length=50, unique=True)
   header = models.BooleanField(_('Header with background image'), default=True, help_text=_("Generic header with a background"))
-  header_bg = models.FilePathField(_("Header Background Image"), path=os.path.join(settings.BASE_DIR, 'assets', 'images', 'marketing'), blank=True, null=True)
+  header_bg = models.FilePathField(_("Header Background Image"), path=os.path.join(settings.BASE_DIR, 'static', 'images', 'marketing'), blank=True, null=True)
   subheader = models.CharField(_("Header Tagline"), max_length=200, help_text=_("Subheader before content"), blank=True)
   title_block = models.BooleanField(_('Turn title block on?'), default=False, help_text=_("Header block without background"))
   seo_keywords = models.CharField(_('Meta Keywords'), max_length=50, blank=True, null=True)
