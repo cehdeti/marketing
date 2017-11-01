@@ -25,7 +25,8 @@ Quick Start
 
   url(r'^', include('marketing.urls')),
 
-3. Run `python manage.py migrate`` to generate the models.
+
+3. Run ``python manage.py migrate`` to generate the models.
 
 4. Start the server ``python manage.py runserver``
 
@@ -35,4 +36,4 @@ Quick Start
 Notes
 ------
 
-Obviously the templates are just based stuff. You should always extend those from the actualy project `base` template etc...
+Obviously the templates are just based stuff. You should always extend those from the actually project ``base`` template etc...
