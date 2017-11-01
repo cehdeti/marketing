@@ -14,16 +14,18 @@ from django.conf import settings
 
 class Marketing(models.Model):
 
-  FULL_WIDTH = 'FULL'
-  HALF = 'HALF'
-  COLUMNS = (
-    (FULL_WIDTH, 'Full Width'),
-    (HALF, 'Two Columns')
+  LAYOUT_FULL = 'FULL'
+  LAYOUT_HALF = 'HALF'
+  LAYOUTS = (
+    (LAYOUT_FULL, 'Full Width'),
+    (LAYOUT_HALF, 'Two Columns')
   )
 
-  PAGE_STATUS_CHOICES = (
-    ('d', 'Draft'),
-    ('p', 'Published'),
+  STATUS_DRAFT = 'd'
+  STATUS_PUBLISHED = 'p'
+  STATUSES = (
+    (STATUS_DRAFT, _('Draft')),
+    (STATUS_PUBLISHED, _('Published')),
   )
 
   title = models.CharField('Page Title', max_length=200)
@@ -34,7 +36,7 @@ class Marketing(models.Model):
   title_block = models.BooleanField(_('Turn title block on?'), default=False, help_text=_("Header block without background"))
   seo_keywords = models.CharField(_('Meta Keywords'), max_length=50, blank=True, null=True)
   seo_description = models.CharField(_('Meta Description'), max_length=100, blank=True, null=True)
-  columns = models.CharField(max_length=4, choices=COLUMNS, default=FULL_WIDTH)
+  columns = models.CharField(max_length=4, choices=LAYOUTS, default=LAYOUT_FULL)
   sidebar = models.BooleanField(_('Turn sidebar on?'), default=False)
   column_1 = RichTextField(help_text=_("This is left content box"), blank=False, null=False)
   column_2 = RichTextField(help_text=_("You don't have to fill this in if you have only one column"), blank=True)
@@ -47,7 +49,7 @@ class Marketing(models.Model):
 
   added_date = models.DateTimeField(_('Date Added'), default=timezone.now)
   last_updated = models.DateTimeField(_('Last Update'), default=timezone.now())
-  page_status = models.CharField(max_length=1, choices=PAGE_STATUS_CHOICES, default='d', help_text=_("Make sure you set the page status to Publish, otherwise it is hidden."))
+  page_status = models.CharField(max_length=1, choices=STATUSES, default=STATUS_DRAFT, help_text=_("Make sure you set the page status to Publish, otherwise it is hidden."))
 
   def __str__(self):
     return self.title

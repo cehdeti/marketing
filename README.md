@@ -7,22 +7,21 @@ Installing the Package
 
 Download the tar file inside the **dist** folder::
 
-  pip install --user django-eti-marketing-cms-0.1.tar.gz
+    pip install --user django-eti-marketing-cms-0.1.tar.gz
 
 Quick Start
 -----------
 
-1. Add `'marketing'` to **INSTALLED_APPS** in `settings.py`::
+1. Add `'marketing'` to **INSTALLED_APPS** in `settings.py`:
 
-	INSTALLED_APPS = [
-		...
-		'marketing',
-	]
+    INSTALLED_APPS = [
+		  ...
+		  'marketing',
+    ]
 
-2. Include the `URLconf` in the project::
+2. Include the `URLconf` in the project:
 
-  url(r'^', include('marketing.urls')),
-
+    url(r'^', include('marketing.urls')),
 
 3. Run `python manage.py migrate` to generate the models.
 
@@ -30,8 +29,10 @@ Quick Start
 
 5. Create a superadmin `python manage.py createsuperuser` then create pages at the admin: `http://localhost:8000/admin`
 
-
 Notes
 ------
 
-Obviously the templates are just based stuff. You should always extend those from the actual project `base` template etc...
+* **IMAGES & STATIC FILES** This is assuming that you're using the `starthere` project as base that the default static files folder should be `static`, and the CMS pulls the images from `static/images/marketing`
+
+* **TEMPLATES** Obviously the templates are just based stuff. You should always extend those from the actual project `base` template etc...
+
