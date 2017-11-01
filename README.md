@@ -15,15 +15,15 @@ Quick Start
 1. Add `'marketing'` to **INSTALLED_APPS** in `settings.py`:
 
     INSTALLED_APPS = [
-		  ...
-		  'marketing',
+        ...
+        'marketing',
     ]
 
 2. Include the `URLconf` in the project:
 
     url(r'^', include('marketing.urls')),
 
-3. Run `python manage.py migrate` to generate the models.
+3. Run `python manage.py makemigrations && python manage.py migrate` to generate the models.
 
 4. Start the server `python manage.py runserver`
 
