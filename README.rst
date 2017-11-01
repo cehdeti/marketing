@@ -4,6 +4,13 @@ ETI Marketing Landing Pages
 
 This is a custom Django Admin CMS for creating marketing landing pages for ETI related projects.
 
+Installing the Package
+-----------------
+
+Download the tar file in `dist`
+
+`pip install --user django-eti-marketing-cms-0.1.tar.gz`
+
 Quick Start
 -----------
 
