@@ -1,0 +1,19 @@
+from django.shortcuts import render, get_object_or_404
+from django.conf import settings
+from pages.models import Page
+from .models import Marketing
+import os
+
+# Create your views here.
+def marketing_page(request, slug):
+
+	current_page = Page.objects.from_path(request.path, settings.LANGUAGE_CODE)
+
+	landing = get_object_or_404(Marketing.objects.filter(page_status='p'), slug=slug)
+	current_url = '%s/%s' % (settings.QUALIFIED_DOMAIN, landing.get_absolute_url())
+
+	header_bg_name = os.path.basename(landing.header_bg).split('.')[0]
+
+	cta_html = '<a href="%s" class="page-landing-cta">%s</a>' % (landing.cta_url, landing.cta_text)
+
+	return render(request, 'pages/landing.html', locals())
