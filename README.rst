@@ -1,6 +1,6 @@
-====
+=====
 ETI Marketing Landing Pages
-====
+=====
 
 This is a custom Django Admin CMS for creating marketing landing pages for ETI related projects.
 
