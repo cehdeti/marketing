@@ -63,7 +63,7 @@
 
 					<div class="col-12 pl-0 mt-4">
 						{% if landing.cta %}
-						  {{ cta_html|safe }}
+							<a href="{{ landing.cta_url }}">{{ landing.cta_text }}</a>
 						{% endif %}
 
 						{% if landing.socials %}

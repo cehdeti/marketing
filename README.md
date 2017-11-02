@@ -43,6 +43,8 @@ SETTING UP THE PACKAGE
 
 5. Create a superadmin `python manage.py createsuperuser` then create pages at the admin: `http://localhost:8000/admin`
 
+6. Go to the **Sites** section in the admin, and change the url to `http://localhost:8000` in order for the "View the site" button to work properly.
+
 ## IMAGES & STATIC FILES
 
 This is assuming that your project is serving static files with the `static` folder, and this little CMS pulls the images from `static/images/marketing` folder.

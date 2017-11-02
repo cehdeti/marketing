@@ -19,8 +19,8 @@
 
     {% block extra_css %}{% endblock %}
 
-    {% if HOST == 'www.dexalytics.com' %}
-        <script type="text/javascript" src="{% static 'js/trackings.bundle.js' %}"></script>
+    {% if HOST == request.META.HTTP_HOST %}
+        {# Includes GA stuff here #}
     {% endif %}
 
     <title>{% block title %}Dexalytics{% endblock %} // {% if landing.title %}{{ landing.title }}{% else %}{% show_content current_page "title" %}{% endif %}</title>
@@ -28,12 +28,7 @@
 
 <body>
     {% block gtm %}
-        {% if "localhost" not in request.META.HTTP_HOST %}
-            <!-- Google Tag Manager (noscript) -->
-            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7CB4C"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <!-- End Google Tag Manager (noscript) -->
-        {% endif %}
+
     {% endblock %}
 
     <div class="page-container">
