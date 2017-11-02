@@ -41,7 +41,7 @@ class Marketing(models.Model):
   socials = models.BooleanField(_('Social Icons?'), default=True)
   added_date = models.DateTimeField(_('Date Added'), auto_now_add=True)
   last_updated = models.DateTimeField(_('Last Update'), auto_now=True)
-  page_status = models.BooleanField(_('Publish Page?'), default=False, help_text=_("Make sure you set the page status to Publish, otherwise it is hidden."))
+  published = models.BooleanField(_('Publish Page?'), default=False, help_text=_("Make sure you set the page status to Publish, otherwise it is hidden."))
 
   def __str__(self):
     return self.title

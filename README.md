@@ -1,18 +1,26 @@
-## ETI Marketing Landing Pages CMS
+ETI Marketing Landing Pages CMS
+===============================
 
 This is a custom Django Admin CMS for creating marketing landing pages for ETI related projects.
 
-Installing the Package
------------------
+INSTALLATION
+------------------------
 
-Download the tar file inside the **dist** folder::
+* Make sure you have `virtualenv` activated
+* Download the [tar file](dist) inside the **dist** folder:
 
 ```bash
   pip install django-eti-marketing-cms-0.1.tar.gz
 ```
 
-Quick Start
------------
+To uninstall:
+
+```bash
+  pip uninstall django-eti-marketing-cms
+```
+
+SETTING UP THE PACKAGE
+------------------------
 
 1. Add `'marketing'` to **INSTALLED_APPS** in `settings.py`:
 
@@ -35,10 +43,16 @@ Quick Start
 
 5. Create a superadmin `python manage.py createsuperuser` then create pages at the admin: `http://localhost:8000/admin`
 
-Notes
-------
+## IMAGES & STATIC FILES
 
-* **IMAGES & STATIC FILES** This is assuming that you're using the `starthere` project as base that the default static files folder should be `static`, and the CMS pulls the images from `static/images/marketing`
+This is assuming that your project is serving static files with the `static` folder, and this little CMS pulls the images from `static/images/marketing` folder.
 
-* **TEMPLATES** Obviously the templates are just based stuff. You should always extend those from the actual project `base` template etc...
+### TEMPLATES
+
+To override the default cms templates, these are the files used for it and you should able to override them by creating a `marketing` folder under your project's `templates` folder:
+
+* [base.html](marketing/templates/base.html) - Probably should just extends from the project.
+* [landing.html](marketing/templates/landing.html)
+* [/includes/header.html](marketing/templates/includes/header.html)
+* [/includes/footer.html](marketing/templates/includes/footer.html)
 
