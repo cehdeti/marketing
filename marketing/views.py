@@ -17,4 +17,4 @@ def marketing_page(request, slug):
 
 	header_bg_name = os.path.basename(landing.header_bg).split('.')[0]
 
-	return render(request, 'landing.html', locals())
+	return render(request, 'marketing/landing.html', locals())

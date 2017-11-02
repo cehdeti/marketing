@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "marketing/base.html" %}
 {% load i18n staticfiles pages_tags %}
 
 {% block meta_keywords %}
@@ -19,11 +19,11 @@
 
 	<article class="page-landing">
 			{% if landing.header %}
-			  {% include 'includes/header.html' with page_bg=header_bg_name userPageTitle=landing.title %}
+			  {% include 'marketing/includes/header.html' with page_bg=header_bg_name userPageTitle=landing.title %}
 			{% endif %}
 
 			{% if landing.title_block and not landing.header %}
-			  {% include 'includes/header.html' with page_bg='no-bg' userPageTitle=landing.title %}
+			  {% include 'marketing/includes/header.html' with page_bg='no-bg' userPageTitle=landing.title %}
 			{% endif %}
 
 		  <section class="page-content page-landing-content{% if landing.sidebar %} has-sidebar{% endif %}">
