@@ -21,11 +21,11 @@ class Marketing(models.Model):
     (LAYOUT_HALF, 'Two Columns')
   )
 
-  STATUS_DRAFT = 'd'
-  STATUS_PUBLISHED = 'p'
-  STATUSES = (
-    (STATUS_DRAFT, _('Draft')),
-    (STATUS_PUBLISHED, _('Published')),
+  PAGE_STATUS_DRAFT = 'd'
+  PAGE_STATUS_PUBLISHED = 'p'
+  PAGE_STATUSES = (
+    (PAGE_STATUS_DRAFT, 'Draft'),
+    (PAGE_STATUS_PUBLISHED, 'Published'),
   )
 
   title = models.CharField('Page Title', max_length=200)
@@ -46,10 +46,9 @@ class Marketing(models.Model):
   cta_url = models.CharField(_('Button URL'), max_length=300, blank=True, null=True, default="/contact/", help_text=_('Within our site: /contact/. External Site: https://google.com/'))
   footer = models.BooleanField(_('Show Footer?'), default=True)
   socials = models.BooleanField(_('Social Icons?'), default=True)
-
-  added_date = models.DateTimeField(_('Date Added'), default=timezone.now)
-  last_updated = models.DateTimeField(_('Last Update'), default=timezone.now())
-  page_status = models.CharField(max_length=1, choices=STATUSES, default=STATUS_DRAFT, help_text=_("Make sure you set the page status to Publish, otherwise it is hidden."))
+  added_date = models.DateTimeField(_('Date Added'), auto_now_add=True)
+  last_updated = models.DateTimeField(_('Last Update'), auto_now=True)
+  page_status = models.CharField(max_length=1, choices=PAGE_STATUSES, default=PAGE_STATUS_DRAFT, help_text=_("Make sure you set the page status to Publish, otherwise it is hidden."))
 
   def __str__(self):
     return self.title

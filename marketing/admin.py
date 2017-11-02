@@ -18,7 +18,7 @@ class MarketingAdmin(admin.ModelAdmin):
 
 	fieldsets = (
 		(None, {
-			'fields': ('title', 'slug', 'last_updated', 'added_date',)
+			'fields': ('title', 'slug', 'last_updated',)
 		}),
 		('Header', {
 			'fields': (('header', 'header_bg'), 'subheader', 'title_block',)
