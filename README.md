@@ -7,21 +7,27 @@ Installing the Package
 
 Download the tar file inside the **dist** folder::
 
-    pip install --user django-eti-marketing-cms-0.1.tar.gz
+```bash
+  pip install django-eti-marketing-cms-0.1.tar.gz
+```
 
 Quick Start
 -----------
 
 1. Add `'marketing'` to **INSTALLED_APPS** in `settings.py`:
 
-    INSTALLED_APPS = [
-        ...
-        'marketing',
-    ]
+```python
+  INSTALLED_APPS = [
+    ...
+    'marketing',
+  ]
+```
 
 2. Include the `URLconf` in the project:
 
-    url(r'^', include('marketing.urls')),
+```python
+  url(r'^', include('marketing.urls')),
+```
 
 3. Run `python manage.py makemigrations && python manage.py migrate` to generate the models.
 
