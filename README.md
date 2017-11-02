@@ -23,13 +23,13 @@ Quick Start
   ]
 ```
 
-2. Include the `URLconf` in the project:
+2. Include the `URLconf` in the project _before_ `pages.urls`:
 
 ```python
   url(r'^', include('marketing.urls')),
 ```
 
-3. Run `python manage.py makemigrations && python manage.py migrate` to generate the models.
+3. Run `python manage.py migrate` to generate the models.
 
 4. Start the server `python manage.py runserver`
 

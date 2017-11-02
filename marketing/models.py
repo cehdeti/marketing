@@ -21,13 +21,6 @@ class Marketing(models.Model):
     (LAYOUT_HALF, 'Two Columns')
   )
 
-  PAGE_STATUS_DRAFT = 'd'
-  PAGE_STATUS_PUBLISHED = 'p'
-  PAGE_STATUSES = (
-    (PAGE_STATUS_DRAFT, 'Draft'),
-    (PAGE_STATUS_PUBLISHED, 'Published'),
-  )
-
   title = models.CharField('Page Title', max_length=200)
   slug = models.SlugField(max_length=50, unique=True)
   header = models.BooleanField(_('Header with background image'), default=True, help_text=_("Generic header with a background"))
@@ -48,7 +41,7 @@ class Marketing(models.Model):
   socials = models.BooleanField(_('Social Icons?'), default=True)
   added_date = models.DateTimeField(_('Date Added'), auto_now_add=True)
   last_updated = models.DateTimeField(_('Last Update'), auto_now=True)
-  page_status = models.CharField(max_length=1, choices=PAGE_STATUSES, default=PAGE_STATUS_DRAFT, help_text=_("Make sure you set the page status to Publish, otherwise it is hidden."))
+  page_status = models.BooleanField(_('Publish Page?'), default=False, help_text=_("Make sure you set the page status to Publish, otherwise it is hidden."))
 
   def __str__(self):
     return self.title
@@ -59,4 +52,3 @@ class Marketing(models.Model):
 
   def get_absolute_url(self):
     return "/p/%s/" % (self.slug)
-
