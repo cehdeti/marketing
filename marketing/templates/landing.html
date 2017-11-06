@@ -19,11 +19,7 @@
 
 	<article class="page-landing">
 			{% if landing.header %}
-			  {% include 'marketing/includes/header.html' with page_bg=header_bg_name userPageTitle=landing.title %}
-			{% endif %}
-
-			{% if landing.title_block and not landing.header %}
-			  {% include 'marketing/includes/header.html' with page_bg='no-bg' userPageTitle=landing.title %}
+			  {% include 'marketing/includes/page-header.html' with page_bg=header_bg_name userPageTitle=landing.title %}
 			{% endif %}
 
 		  <section class="page-content page-landing-content{% if landing.sidebar %} has-sidebar{% endif %}">
@@ -36,15 +32,11 @@
 
 				<div class="page-landing-body {{ landing.columns|lower }}">
 					<div class="row no-gutters">
-							{% if landing.subheader and not landing.title_block and not landing.header %}
-								<header class="page-landing-headers">
-									<h2 class="page-landing-title">{{ landing.title }}</h2>
-									<h3 class="page-landing-subheader">{{ landing.subheader }}</h3>
-								</header>
-							{% else %}
-						    <header class="page-landing-headers">
-							  	<h3 class="page-landing-title">{{ landing.subheader }}</h3>
-							  </header>
+
+							{% if landing.subheader %}
+							<header class="page-landing-headers">
+								<h2 class="page-landing-title">{{ landing.subheader }}</h2>
+							</header>
 							{% endif %}
 
 							{% if landing.columns == 'HALF' %}
@@ -63,7 +55,7 @@
 
 					<div class="col-12 pl-0 mt-4">
 						{% if landing.cta %}
-							<a href="{{ landing.cta_url }}">{{ landing.cta_text }}</a>
+						  {{ cta_html|safe }}
 						{% endif %}
 
 						{% if landing.socials %}
@@ -91,7 +83,7 @@
 		  </section>
 
 		  {% if landing.footer %}
-		    {% include 'includes/footer.html' %}
+		    {% include 'marketing/includes/footer.html' %}
 		  {% endif %}
 	</article>
 {% endblock %}
