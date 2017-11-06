@@ -9,7 +9,7 @@ INSTALLATION
 * Make sure you have `virtualenv` activated
 
 ```bash
-	pip install git+https://github.com/cehdeti/eti-django-marketing-cms.git
+  pip install git+https://github.com/cehdeti/eti-django-marketing-cms.git
 ```
 
 To uninstall:
