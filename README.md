@@ -7,10 +7,9 @@ INSTALLATION
 ------------------------
 
 * Make sure you have `virtualenv` activated
-* Download the [tar file](dist) inside the **dist** folder:
 
 ```bash
-  pip install django-eti-marketing-cms-0.1.tar.gz
+	pip install git+https://github.com/cehdeti/eti-django-marketing-cms.git
 ```
 
 To uninstall:
