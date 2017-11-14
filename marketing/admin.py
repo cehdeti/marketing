@@ -19,6 +19,7 @@ class MarketingAdmin(admin.ModelAdmin):
 	search_fields = ['title']
 	actions = [make_published, make_unpublished]
 	view_on_site = True
+	save_as = True
 
 	fieldsets = (
 		(None, {
