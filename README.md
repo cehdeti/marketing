@@ -9,7 +9,7 @@ INSTALLATION
 * Make sure you have `virtualenv` activated
 
 ```bash
-	pip install git+https://github.com/cehdeti/eti-django-marketing-cms.git
+  pip install git+https://github.com/cehdeti/eti-django-marketing-cms.git
 ```
 
 To uninstall:
@@ -42,7 +42,7 @@ SETTING UP THE PACKAGE
 
 5. Create a superadmin `python manage.py createsuperuser` then create pages at the admin: `http://localhost:8000/admin`
 
-6. Go to the **Sites** section in the admin, and change the url to `http://localhost:8000` in order for the "View the site" button to work properly.
+6. Go to the **Sites** section in the admin, and change the url to `http://localhost:8000` in order for the "View the site" button to work properly. _Don't forget that you will need to do the same for other environments as well when you deploy_
 
 ## IMAGES & STATIC FILES
 
