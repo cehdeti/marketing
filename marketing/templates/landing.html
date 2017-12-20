@@ -1,6 +1,10 @@
 {% extends "marketing/base.html" %}
 {% load i18n staticfiles pages_tags %}
 
+{% block title %}
+    {{ block.super }}{{ landing.title }}
+{% endblock title %}
+
 {% block meta_keywords %}
 	{{ landing.seo_keywords }}
 {% endblock %}
@@ -61,7 +65,7 @@
 						{% if landing.socials %}
 						  <div class="page-landing-socials">
 						  	<h5 class="h6 text-uppercase">Share this article</h5>
-			   	      <a class="btn btn-dark btn-fob mr-2" href="https://twitter.com/intent/tweet?screen_name=dexalytics&text={{ landing.title }}{{ landing.column_1|striptags|truncatewords:20" data-show-count="false" data-toggle="tooltip" title="Share this article on Twitter">
+			   	      <a class="btn btn-dark btn-fob mr-2" href="https://twitter.com/intent/tweet?screen_name=dexalytics&text={{ landing.title }}{{ landing.column_1|striptags|truncatewords:20 }}" data-show-count="false" data-toggle="tooltip" title="Share this article on Twitter">
 			   				  <i class="fa fa-twitter" aria-hidden="true">
 			   					<span class="sr-only">Twitter</span>
 			   					<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
