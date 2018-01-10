@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class MarketingConfig(AppConfig):
-    name = 'marketing'
+    name = 'eti-marketing-cms'
