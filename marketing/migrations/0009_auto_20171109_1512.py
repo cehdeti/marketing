@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='marketing',
             name='header_bg',
-            field=models.FilePathField(blank=True, null=True, path='/Users/saun0063/Workshop/dexalytics.com/static/images/marketing', verbose_name='Header Background Image'),
+            field=models.FilePathField(blank=True, null=True, path='static/images/marketing', verbose_name='Header Background Image'),
         ),
     ]
