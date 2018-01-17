@@ -24,7 +24,7 @@ class Marketing(models.Model):
   title = models.CharField(_('Page Title'), max_length=200, help_text=_('Try not to exceed more than 50 characters, long URL or page title is not exactly appealing and it also pushes out of the header block.'))
   slug = models.SlugField(max_length=50, unique=True)
   header = models.BooleanField(_('Header with background image'), default=True, help_text=_("Generic header with a background"))
-  header_bg = models.FilePathField(_("Header Background Image"), path='static/images/marketing/', blank=True, null=True)
+  header_bg = models.FilePathField(_("Header Background Image"), path=settings.MARKETING_IMG_FILEPATH, blank=True, null=True)
   subheader = models.CharField(_("Tagline"), max_length=200, help_text=_("This is the article title and should be a bit longer than the page title."), blank=True)
   seo_keywords = models.CharField(_('Meta Keywords'), max_length=50, blank=True, null=True)
   seo_description = models.CharField(_('Meta Description'), max_length=100, blank=True, null=True)
