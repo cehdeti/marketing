@@ -29,7 +29,7 @@ SETTING UP THE PACKAGE
     'marketing',
   ]
 
-  #This path will be used inside the models
+  #This path will be used inside the models and you want to dump all of the preset images. Why? Because we want to restrict the types of images and sizes. This is most likely a branded header background image and so other non-design/technical folks don't need to deal with.
   MARKETING_IMG_FILEPATH = 'static/images/<your_folder>'
 ```
 
