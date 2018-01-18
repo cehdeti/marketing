@@ -51,7 +51,7 @@ SETTING UP THE PACKAGE
 
 ### TEMPLATES
 
-To override the default cms templates, these are the files used for it and you should able to override them by creating a `marketing` folder under your project's `templates` folder:
+To override the default cms templates, these are the files used for it and you should able to override them by creating a `marketing` folder under your project's `templates` folder. Here are the default templates that you use:
 
 * [base.html](eti_marketing_cms/templates/base.html) - Probably should just extends from the project.
 * [landing.html](eti_marketing_cms/templates/landing.html)
