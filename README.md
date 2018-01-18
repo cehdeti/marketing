@@ -26,7 +26,7 @@ SETTING UP THE PACKAGE
 ```python
   INSTALLED_APPS = [
     ...
-    'marketing',
+    'eti-marketing-cms',
   ]
 
   #This path will be used inside the models and you want to dump all of the preset images. Why? Because we want to restrict the types of images and sizes. This is most likely a branded header background image and so other non-design/technical folks don't need to deal with.
@@ -36,7 +36,7 @@ SETTING UP THE PACKAGE
 2. Include the `URLconf` in the project _before_ `pages.urls`:
 
 ```python
-  url(r'^', include('marketing.urls')),
+  url(r'^', include('eti_marketing_cms.urls')),
 ```
 
 3. Run `python manage.py makemigrations` to generate the models
