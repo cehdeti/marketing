@@ -17,6 +17,4 @@ def marketing_page(request, slug):
 
 	header_bg_name = os.path.basename(landing.header_bg).split('.')[0]
 
-	cta_html = '<a href="%s" class="page-landing-cta">%s</a>' % (landing.cta_url, landing.cta_text)
-
 	return render(request, 'landing.html', locals())
