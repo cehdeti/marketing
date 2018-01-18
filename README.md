@@ -57,7 +57,7 @@ This is assuming that your project is serving static files with the `static` fol
 
 To override the default cms templates, these are the files used for it and you should able to override them by creating a `marketing` folder under your project's `templates` folder:
 
-* [base.html](marketing/templates/base.html) - Probably should just extends from the project.
+* [base.html](eti_marketing_cms/templates/base.html) - Probably should just extends from the project.
 * [landing.html](eti_marketing_cms/templates/landing.html)
 * [/includes/header.html](eti_marketing_cms/templates/includes/header.html)
 * [/includes/footer.html](eti_marketing_cms/templates/includes/footer.html)
