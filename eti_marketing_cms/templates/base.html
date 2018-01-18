@@ -23,7 +23,7 @@
         {# Includes GA stuff here #}
     {% endif %}
 
-    <title>{% block title %}Dexalytics{% endblock %} // {% if landing.title %}{{ landing.title }}{% else %}{% show_content current_page "title" %}{% endif %}</title>
+    <title>{% block title %}{% endblock %} {% if landing.title %}{{ landing.title }}{% else %}{% show_content current_page "title" %}{% endif %}</title>
 </head>
 
 <body>
@@ -34,19 +34,6 @@
     <div class="page-container">
 
       {% include 'includes/header.html' %}
-
-      {% if messages %}
-        <div class="message-alert">
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-            {% for message in messages %}
-                {% if message.level == 25 %}
-                    {{ message|safe}}
-                {% else %}
-                    {{ message|safe}}
-                {% endif %}
-            {% endfor %}
-        </div>
-      {% endif %}
 
       <main class="page-{{ current_page|default_if_none:'landing' }}">
         {% block content %}{% endblock %}

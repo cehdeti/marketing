@@ -21,12 +21,12 @@ To uninstall:
 SETTING UP THE PACKAGE
 ------------------------
 
-1. Add `'marketing'` to **INSTALLED_APPS** in `settings.py`:
+1. Add the following to `settings.py`:
 
 ```python
   INSTALLED_APPS = [
     ...
-    'django-eti-marketing-cms',
+    'eti_marketing_cms',
   ]
 
   #This path will be used inside the models and you want to dump all of the preset images. Why? Because we want to restrict the types of images and sizes. This is most likely a branded header background image and so other non-design/technical folks don't need to deal with.
