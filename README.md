@@ -36,7 +36,7 @@ SETTING UP THE PACKAGE
 2. Include the `URLconf` in the project _before_ `pages.urls`:
 
 ```python
-  url(r'^', include('eti_marketing_cms.urls')),
+  url(r'^', include('django-eti-marketing-cms.urls')),
 ```
 
 3. Run `python manage.py makemigrations` to generate the models
@@ -49,16 +49,12 @@ SETTING UP THE PACKAGE
 
 6. Go to the **Sites** section in the admin, and change the url to `http://localhost:8000` in order for the "View the site" button to work properly. _Don't forget that you will need to do the same for other environments as well when you deploy_
 
-## IMAGES & STATIC FILES
-
-This is assuming that your project is serving static files with the `static` folder, and this little CMS pulls the images from `static/images/marketing` folder.
-
 ### TEMPLATES
 
 To override the default cms templates, these are the files used for it and you should able to override them by creating a `marketing` folder under your project's `templates` folder:
 
 * [base.html](eti_marketing_cms/templates/base.html) - Probably should just extends from the project.
-* [landing.html](eti_marketing_cms/templates/landing.html)
-* [/includes/header.html](eti_marketing_cms/templates/includes/header.html)
-* [/includes/footer.html](eti_marketing_cms/templates/includes/footer.html)
+* [landing.html](django-eti-marketing-cms/templates/landing.html)
+* [/includes/header.html](django-eti-marketing-cms/templates/includes/header.html)
+* [/includes/footer.html](django-eti-marketing-cms/templates/includes/footer.html)
 
