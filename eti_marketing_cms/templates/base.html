@@ -33,11 +33,15 @@
 
     <div class="page-container">
 
-      {% include 'includes/header.html' %}
+      {% include 'eti_marketing_cms/includes/header.html' %}
 
       <main class="page-{{ current_page|default_if_none:'landing' }}">
         {% block content %}{% endblock %}
       </main>
+
+      {% if landing.footer %}
+        {% include 'eti_marketing_cms/includes/footer.html' %}
+      {% endif %}
     </div>
 
     <script src="{% static 'js/app.min.js' %}"></script>
