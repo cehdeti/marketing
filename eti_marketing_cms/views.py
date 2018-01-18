@@ -13,10 +13,10 @@ def marketing_page(request, slug):
 	else:
 		landing = get_object_or_404(Marketing.objects.filter(published=True), slug=slug)
 
-	current_url = '%s/%s' % (settings.QUALIFIED_DOMAIN, landing.get_absolute_url())
+	current_url = landing.get_absolute_url()
 
 	header_bg_name = os.path.basename(landing.header_bg).split('.')[0]
 
 	cta_html = '<a href="%s" class="page-landing-cta">%s</a>' % (landing.cta_url, landing.cta_text)
 
-	return render(request, 'templates/landing.html', locals())
+	return render(request, 'landing.html', locals())
