@@ -36,7 +36,7 @@ SETTING UP THE PACKAGE
 2. Include the `URLconf` in the project _before_ `pages.urls`:
 
 ```python
-  url(r'^', include('django-eti-marketing-cms.urls')),
+  url(r'^', include('marketing.urls')),
 ```
 
 3. Run `python manage.py makemigrations` to generate the models
@@ -54,7 +54,7 @@ SETTING UP THE PACKAGE
 To override the default cms templates, these are the files used for it and you should able to override them by creating a `marketing` folder under your project's `templates` folder:
 
 * [base.html](eti_marketing_cms/templates/base.html) - Probably should just extends from the project.
-* [landing.html](django-eti-marketing-cms/templates/landing.html)
-* [/includes/header.html](django-eti-marketing-cms/templates/includes/header.html)
-* [/includes/footer.html](django-eti-marketing-cms/templates/includes/footer.html)
+* [landing.html](marketing/templates/landing.html)
+* [/includes/header.html](marketing/templates/includes/header.html)
+* [/includes/footer.html](marketing/templates/includes/footer.html)
 
