@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 import os
 from django.conf import settings
 
-from marketing.models import Marketing
+from eti_marketing_cms.models import Marketing
 
 class MarketingModelTest(TestCase):
 
