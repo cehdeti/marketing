@@ -17,4 +17,11 @@ def marketing_page(request, slug):
 
 	header_bg_name = os.path.basename(landing.header_bg).split('.')[0]
 
-	return render(request, 'eti_marketing_cms/templates/landing.html', locals())
+	context = {
+		'current_url': current_url,
+		'current_page': current_page,
+		'header_bg_name': header_bg_name,
+		'landing': landing,
+	}
+
+	return render(request, 'eti_marketing_cms/landing.html', context)
