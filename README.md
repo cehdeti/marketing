@@ -26,7 +26,7 @@ SETTING UP THE PACKAGE
 ```python
   INSTALLED_APPS = [
     ...
-    'eti-marketing-cms',
+    'django-eti-marketing-cms',
   ]
 
   #This path will be used inside the models and you want to dump all of the preset images. Why? Because we want to restrict the types of images and sizes. This is most likely a branded header background image and so other non-design/technical folks don't need to deal with.
@@ -58,7 +58,7 @@ This is assuming that your project is serving static files with the `static` fol
 To override the default cms templates, these are the files used for it and you should able to override them by creating a `marketing` folder under your project's `templates` folder:
 
 * [base.html](marketing/templates/base.html) - Probably should just extends from the project.
-* [landing.html](marketing/templates/landing.html)
-* [/includes/header.html](marketing/templates/includes/header.html)
-* [/includes/footer.html](marketing/templates/includes/footer.html)
+* [landing.html](eti_marketing_cms/templates/landing.html)
+* [/includes/header.html](eti_marketing_cms/templates/includes/header.html)
+* [/includes/footer.html](eti_marketing_cms/templates/includes/footer.html)
 

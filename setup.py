@@ -15,7 +15,7 @@ setup(
     license='None',
     description='A simple Django UI for Marketing folks to add landing pages from the admin.',
     long_description=README,
-    url='https://eti.umn.edu/',
+    url='https://github.com/cehdeti/eti-django-marketing-cms.git',
     author='Mon Sucher',
     author_email='msucher@umn.edu',
     classifiers=[

@@ -19,4 +19,4 @@ def marketing_page(request, slug):
 
 	cta_html = '<a href="%s" class="page-landing-cta">%s</a>' % (landing.cta_url, landing.cta_text)
 
-	return render(request, 'pages/landing.html', locals())
+	return render(request, 'templates/landing.html', locals())
