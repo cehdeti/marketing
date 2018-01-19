@@ -1,1 +1,1 @@
-default_app_config = 'eti_marketing_cms.apps.MarketingConfig'
+default_app_config = 'django-eti-marketing-cms.apps.MarketingConfig'
