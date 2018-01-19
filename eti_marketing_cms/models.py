@@ -48,7 +48,7 @@ class Marketing(models.Model):
 
   #Social media
   socials = models.BooleanField(_('Social Icons?'), default=False)
-  addthis_pubid = models.CharField(_('AddThis PubId'), null=True help_text=_("This is the string that is AFTER `#pubid=`"))
+  addthis_pubid = models.CharField(_('AddThis PubId'), help_text=_("This is the string that is AFTER `#pubid=`. Ex: ra-5a61fe428f3a39a8"))
 
   #Article publishing
   added_date = models.DateTimeField(_('Date Added'), auto_now_add=True)
