@@ -32,7 +32,7 @@ class MarketingAdmin(admin.ModelAdmin):
 			'fields': ('columns', 'column_1', 'column_2', 'sidebar', 'sidebar_text', 'footer')
 		}),
 		('Call to Actions', {
-			'fields': ('cta', ('cta_text', 'cta_url'), 'socials',)
+			'fields': ('cta', ('cta_text', 'cta_url'), ('socials', 'addthis_pubid'))
 		}),
 		('Additional SEO', {
 			'classes': ('collapse',),
