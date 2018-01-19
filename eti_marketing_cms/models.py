@@ -48,7 +48,7 @@ class Marketing(models.Model):
   footer = models.BooleanField(_('Show Footer?'), default=True)
 
   #Social media
-  socials = models.BooleanField(_('Social Icons?'), default=False)
+  socials = models.BooleanField(_('Share Article With Social Media?'), default=False, help_text=_("You have to customize this on your AddThis account"))
   addthis_pubid = models.CharField(_('AddThis PubId'), max_length=25, null=True, blank=True, help_text=_("This is the string that is AFTER `#pubid=`. Ex: ra-5a61fe428f3a39a8"))
 
   #Article publishing
