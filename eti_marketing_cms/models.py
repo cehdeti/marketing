@@ -16,7 +16,6 @@ from django.conf import settings
 class Marketing(models.Model):
 
   class Meta:
-    app_label = 'Marketing Landing Pages'
     verbose_name = 'Landing Page'
     verbose_name_plural = 'Landing Pages'
 
