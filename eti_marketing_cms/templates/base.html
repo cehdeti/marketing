@@ -2,55 +2,40 @@
 <!doctype html>
 <html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %} dir="rtl" {% endif %} class="nojs">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
-    <meta name="description" content="{% block meta_description %}{% endblock %}">
-    <meta name="application-version" content="{{ request.application_version }}">
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+        <meta name="application-version" content="{{ request.application_version }}"> {% block extra_meta %} {% endblock extra_meta %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/app.min.css' %}"> {% block extra_css %}{% endblock %} {% if HOST == request.META.HTTP_HOST %} {# Includes GA stuff here #} {% endif %}
 
-    {% block extra_meta %}
-    {% endblock extra_meta %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/app.min.css' %}">
+        <title>{% block title %}{% endblock %} {% if landing.title %}{{ landing.title }}{% else %}{% show_content current_page "title" %}{% endif %}</title>
+    </head>
 
+    <body>
+        {% block gtm %} {% endblock %}
 
-    {% block extra_css %}{% endblock %}
+        <header role="banner">
+            {% if landing.header %}
+            <h2>{{ landing.title }}</h2> {% endif %} {% if landing.subheader %}
+        </header>
 
-    {% if HOST == request.META.HTTP_HOST %}
-        {# Includes GA stuff here #}
-    {% endif %}
+        <main>
+            {% block content %}{% endblock %}
+        </main>
 
-    <title>{% block title %}{% endblock %} {% if landing.title %}{{ landing.title }}{% else %}{% show_content current_page "title" %}{% endif %}</title>
-</head>
+        <footer>
+            This is the footer
+        </footer>
 
-<body>
-    {% block gtm %}
+        {% block extra_html %}{% endblock %}
 
-    {% endblock %}
+        {% block scripts %}{% endblock %}
 
-    <div class="page-container">
-
-      {% include 'eti_marketing_cms/includes/header.html' %}
-
-      <main class="page-{{ current_page|default_if_none:'landing' }}">
-        {% block content %}{% endblock %}
-      </main>
-
-      {% if landing.footer %}
-        {% include 'eti_marketing_cms/includes/footer.html' %}
-      {% endif %}
-    </div>
-
-    <script src="{% static 'js/app.min.js' %}"></script>
-
-    {% block extra_html %}{% endblock %}
-
-    {% block scripts %}{% endblock %}
-
-
-</body>
+    </body>
 
 </html>

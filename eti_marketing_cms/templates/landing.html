@@ -21,70 +21,43 @@
 
 {% block content %}
 
-	<article class="page-landing">
-			{% if landing.header %}
-			  {% include 'eti_marketing_cms/includes/page-header.html' with page_bg=header_bg_name userPageTitle=landing.title %}
+	<article>
+		{% if landing.subheader %}
+	    <header>
+	    	<h3>{{ landing.subheader }}</h3> {% endif %}
+	    </header>
+		{% endif %}
+
+		{% if landing.columns == 'HALF' %}
+			<section class="column-1">
+				{{ landing.column_1|safe }}
+			</section>
+
+			<section class="column-2">
+				{{ landing.column_2|safe }}
+			</section>
+
+		{% else %}
+
+			<section class="full-column">
+				{{ landing.column_1|safe }}
+			</section>
+
+		{% endif %}
+
+		<footer>
+			{% if landing.cta %}
+			 <a href="https://{{ current_url }}/{{ landing.cta_url }}">{{ landing.cta_text }}</a>
 			{% endif %}
 
-		  <section class="page-content page-landing-content{% if landing.sidebar %} has-sidebar{% endif %}">
+			{% if landing.socials %}
+				<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ landing.addthis_pubid }}"></script>
 
-				{% if landing.sidebar %}
-					<aside class="page-landing-sidebar">
-						{{ landing.sidebar_text|safe }}
-					</aside>
-				{% endif %}
-
-				<div class="page-landing-body {{ landing.columns|lower }}">
-					<div class="row no-gutters">
-
-							{% if landing.subheader %}
-							<header class="page-landing-headers">
-								<h2 class="page-landing-title">{{ landing.subheader }}</h2>
-							</header>
-							{% endif %}
-
-							{% if landing.columns == 'HALF' %}
-								<div class="page-content-left">
-									{{ landing.column_1|safe }}
-								</div>
-								<div class="page-content-right">
-									{{ landing.column_2|safe }}
-								</div>
-							{% else %}
-								<div class="col-12 pl-0">
-									{{ landing.column_1|safe }}
-								</div>
-							{% endif %}
-					</div>
-
-					<div class="col-12 pl-0 mt-4">
-						{% if landing.cta %}
-						 <a href="https://{{ current_url }}/{{ landing.cta_url }}">{{ landing.cta_text }}</a>
-						{% endif %}
-
-						{% if landing.socials %}
-						  <div class="page-landing-socials">
-						  	<h5 class="h6 text-uppercase">Share this article</h5>
-			   	      <a class="btn btn-dark btn-fob mr-2" href="https://twitter.com/intent/tweet?screen_name=dexalytics&text={{ landing.title }}{{ landing.column_1|striptags|truncatewords:20 }}" data-show-count="false" data-toggle="tooltip" title="Share this article on Twitter">
-			   				  <i class="fa fa-twitter" aria-hidden="true">
-			   					<span class="sr-only">Twitter</span>
-			   					<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-			   				  </i>
-			   				</a>
-			   				<a
-			   					class="btn btn-dark btn-fob"
-			   					href="https://www.facebook.com/dialog/share?app_id=145634995501895&display=popup&href={{current_url}}&redirect_uri={{current_url}}"
-			   					data-toggle="tooltip" title="Share this on Facebook">
-			   				  	<i class="fa fa-facebook" aria-hidden="true">
-			   							<span class="sr-only">Facebook</span>
-			   				  	</i>
-			   				</a>
-			   	    </div>
-						{% endif %}
-					</div>
-				</div>
-
-		  </section>
+			  <div class="social-media">
+			  	<div class="addthis_inline_share_toolbox"></div>
+   	    </div>
+			{% endif %}
+		</footer>
 
 	</article>
 {% endblock %}
