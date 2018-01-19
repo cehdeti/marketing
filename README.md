@@ -15,7 +15,7 @@ INSTALLATION
 **Note**: You may need to manually add this to the `requirements.txt`:
 
 ```
-  -e git+https://github.com/cehdeti/eti-django-marketing-cms.git#egg=eti_marketing_cms
+  -e git+https://github.com/cehdeti/eti-django-marketing-cms.git#egg=django-eti-marketing-cms
 ```
 
 To uninstall:
