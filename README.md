@@ -12,6 +12,12 @@ INSTALLATION
   pip install git+https://github.com/cehdeti/eti-django-marketing-cms.git
 ```
 
+**Note**: You may need to manually add this to the `requirements.txt`:
+
+```
+  -e git+https://github.com/cehdeti/eti-django-marketing-cms.git#egg=eti_marketing_cms
+```
+
 To uninstall:
 
 ```bash
@@ -26,7 +32,7 @@ SETTING UP THE PACKAGE
 ```python
   INSTALLED_APPS = [
     ...
-    'eti_marketing_cms',
+    'eti_marketing_cms.apps.MarketingConfig',
   ]
 
   #This path will be used inside the models and you want to dump all of the preset images. Why? Because we want to restrict the types of images and sizes. This is most likely a branded header background image and so other non-design/technical folks don't need to deal with.
