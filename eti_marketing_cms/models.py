@@ -17,7 +17,7 @@ class Marketing(models.Model):
 
   class Meta:
     verbose_name = 'Landing Page'
-    verbose_name_plural = 'Landing Page'
+    verbose_name_plural = 'Landing Pages'
 
   LAYOUT_FULL = 'FULL'
   LAYOUT_HALF = 'HALF'
