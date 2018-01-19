@@ -4,5 +4,5 @@ from django.apps import AppConfig
 
 
 class MarketingConfig(AppConfig):
-  name = 'django-eti-marketing-cms'
+  name = 'eti_marketing_cms'
   verbose_name = 'Marketing CMS'
