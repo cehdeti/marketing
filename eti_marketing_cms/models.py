@@ -30,7 +30,6 @@ class Marketing(models.Model):
   slug = models.SlugField(max_length=50, unique=True)
 
   header = models.BooleanField(_('Header with background image'), default=True, help_text=_("Generic header with a background"))
-  header_bg = models.FilePathField(_("Header Background Image"), path=settings.MARKETING_IMG_FILEPATH, blank=True, null=True)
   subheader = models.CharField(_("Tagline"), max_length=200, help_text=_("This is the article title and should be a bit longer than the page title."), blank=True)
 
   seo_keywords = models.CharField(_('Meta Keywords'), max_length=50, blank=True, null=True)
