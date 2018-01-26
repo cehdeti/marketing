@@ -15,12 +15,9 @@ def marketing_page(request, slug):
 
 	current_url = landing.get_absolute_url()
 
-	header_bg_name = os.path.basename(landing.header_bg).split('.')[0]
-
 	context = {
 		'current_url': current_url,
 		'current_page': current_page,
-		'header_bg_name': header_bg_name,
 		'landing': landing,
 	}
 
