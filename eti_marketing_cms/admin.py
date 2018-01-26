@@ -26,7 +26,7 @@ class MarketingAdmin(admin.ModelAdmin):
 			'fields': ('title', 'slug', 'last_updated',)
 		}),
 		('Header', {
-			'fields': (('header', 'header_bg'), 'subheader',)
+			'fields': (('header',), 'subheader',)
 		}),
 		('Layouts', {
 			'fields': ('columns', 'column_1', 'column_2', 'sidebar', 'sidebar_text', 'footer')
