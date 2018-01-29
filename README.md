@@ -3,6 +3,8 @@ ETI Marketing Landing Pages CMS
 
 This is a custom Django Admin CMS for creating marketing landing pages for ETI related projects.
 
+The goal of this CMS is consistency so the Marketing staff can easily add new marketing landing pages based on project's styleguide, and without coding. The templates should be extended per project since it's just a barebone to get you started.
+
 INSTALLATION
 ------------
 
