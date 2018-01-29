@@ -5,6 +5,7 @@ from .models import LandingPage
 
 class DetailView(BaseDetailView):
     template_name = 'eti_marketing_cms/landing.html'
+    context_object_name = 'landing'
 
     def get_queryset(self):
         if self.request.user.is_superuser:
