@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% load i18n staticfiles pages_tags %}
+{% extends base_template %}
+{% load i18n staticfiles %}
 
 {% block title %}
     {{ block.super }}{{ landing.title }}
@@ -12,7 +12,7 @@
 	{{ landing.seo_description }}
 {% endblock %}
 {% block extra_meta %}
-    <meta property="og:url"                content="{{ current_url }}" />
+    <meta property="og:url"                content="{{ landing.get_absolute_url }}" />
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="{{ landing.title }}" />
     <meta property="og:description"        content="{{ landing.column_1|striptags|truncatewords:25 }}" />
@@ -47,7 +47,7 @@
 
 		<footer>
 			{% if landing.cta %}
-			 <a href="https://{{ current_url }}/{{ landing.cta_url }}">{{ landing.cta_text }}</a>
+			 <a href="https://{{ landing.get_absolute_url }}/{{ landing.cta_url }}">{{ landing.cta_text }}</a>
 			{% endif %}
 
 			{% if landing.socials %}

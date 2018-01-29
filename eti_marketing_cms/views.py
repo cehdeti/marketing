@@ -1,24 +1,18 @@
-from django.shortcuts import render, get_object_or_404
+from django.views.generic import DetailView as BaseDetailView
 from django.conf import settings
-from pages.models import Page
-from .models import Marketing
-import os
+from .models import LandingPage
 
-def marketing_page(request, slug):
 
-	current_page = Page.objects.from_path(request.path, settings.LANGUAGE_CODE)
+class DetailView(BaseDetailView):
+    template_name = 'eti_marketing_cms/landing.html'
 
-	if request.user.is_superuser:
-		landing = get_object_or_404(Marketing.objects.filter(slug=slug))
-	else:
-		landing = get_object_or_404(Marketing.objects.filter(published=True), slug=slug)
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return LandingPage.objects.all()
+        else:
+            return LandingPage.objects.published()
 
-	current_url = landing.get_absolute_url()
-
-	context = {
-		'current_url': current_url,
-		'current_page': current_page,
-		'landing': landing,
-	}
-
-	return render(request, 'eti_marketing_cms/landing.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['base_template'] = getattr(settings, 'ETI_MARKETING_CMS_BASE_TEMPLATE', 'base.html')
+        return context

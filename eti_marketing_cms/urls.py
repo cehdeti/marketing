@@ -1,12 +1,9 @@
-
-# -*- coding: utf-8 -*-
-
 from __future__ import unicode_literals
 
 from django.conf.urls import url
 
-from .views import *
+from . import views
 
 urlpatterns = [
-  url(r'^p/(?P<slug>[^\.]+)/', marketing_page, name="marketing-landing-page"),
+    url(r'^p/(?P<slug>[^\.]+)/', views.DetailView.as_view(), name='marketing-landing-page'),
 ]
