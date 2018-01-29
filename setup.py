@@ -26,7 +26,7 @@ setup(
     url='https://github.com/cehdeti/eti-django-marketing-cms.git',
     author='Mon Sucher',
     author_email='msucher@umn.edu',
-    install_requires=['django<2', 'django-ckeditor'],
+    install_requires=['django<2', 'django-ckeditor', 'requests'],
     tests_require=get_requirements_tests(),
     test_suite='tests',
     classifiers=[
