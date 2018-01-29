@@ -5,7 +5,10 @@ from django.core.exceptions import ValidationError
 from django.template.defaultfilters import truncatewords
 from django.utils.translation import ugettext as _, ugettext_lazy as __
 from django.utils.encoding import python_2_unicode_compatible
-from django.urls import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 
 from ckeditor.fields import RichTextField
 
