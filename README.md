@@ -12,6 +12,12 @@ INSTALLATION
   pip install git+https://github.com/cehdeti/eti-django-marketing-cms.git
 ```
 
+If using `pipenv`
+
+```
+  pipenv install git+https://github.com/cehdeti/eti-django-marketing-cms.git#egg=django-eti-marketing-cms
+```
+
 SETTING UP THE PACKAGE
 ----------------------
 
