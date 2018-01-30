@@ -46,16 +46,11 @@ Setting up the Package
 
 3. `python manage.py migrate` to migrate the models
 
-<<<<<<< Updated upstream
-### Templates
-
-=======
 4. Once you have the django admin going, go to **Sites** and add the site's domain in place of **example.com** - That because if you don't do that. The **View on Site** button will not work correctly.
 
 
 ### Templates
 
->>>>>>> Stashed changes
 You may configure the base template that the templates in this package extend
 from by changing the `ETI_MARKETING_CMS_BASE_TEMPLATE` setting:
 
