@@ -47,7 +47,7 @@
 
 		<footer>
 			{% if landing.cta %}
-			 <a href="https://{{ landing.get_absolute_url }}/{{ landing.cta_url }}">{{ landing.cta_text }}</a>
+        <a href="{{ landing.cta_url }}">{{ landing.cta_text }}</a>
 			{% endif %}
 
 			{% if landing.socials %}
