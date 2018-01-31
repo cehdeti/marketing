@@ -3,6 +3,7 @@ SECRET_KEY = 'NOTASECRET'
 
 INSTALLED_APPS = [
     'eti_marketing_cms',
+    'eti_marketing_cms.landing_page',
     'ckeditor',
 ]
 
@@ -15,4 +16,4 @@ DATABASES = {
 }
 
 
-ROOT_URLCONF = 'eti_marketing_cms.urls'
+ROOT_URLCONF = 'tests.urls'

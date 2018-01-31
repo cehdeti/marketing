@@ -4,12 +4,6 @@ ETI Marketing CMS
 This is Django app that provides miscellaneous marketing functionality for ETI
 apps.
 
-Currently, it does the following:
-
-* Provides a `LandingPage` model so the Marketing staff can easily add new marketing landing pages based on project's styleguide, and without coding.
-* Provides a simple, extensible signup form that talks to Active Campaign.
-* Centralizes communications with the Active Campaign API
-
 Installation
 ------------
 
@@ -28,38 +22,41 @@ If using `pipenv`
 Setting up the Package
 ----------------------
 
-1. Add the following to `settings.py`:
+The package is split up into different apps, depending on which functionality
+you'd like to include. At minimum, you must include the following in your
+Django settings:
 
 ```python
   INSTALLED_APPS = [
     ...
     'eti_marketing_cms',
+  ]
+```
+
+Read on for instructions on setting up each of apps.
+
+### Landing Pages
+
+1. Add app to `INSTALLED_APPS`:
+
+```python
+  INSTALLED_APPS = [
+    ...
+    'eti_marketing_cms',
+    'eti_marketing_cms.landing_page',
     'ckeditor',
   ]
 ```
 
-2. Include the `URLconf` in the project _before_ `pages.urls`:
+2. Include the URLs in your main URL conf:
 
 ```python
-  url(r'^', include('eti_marketing_cms.urls')),
+  url(r'^', include('eti_marketing_cms.landing_page.urls')),
 ```
 
-3. `python manage.py migrate` to migrate the models
+3. Run `python manage.py migrate` to run the database migrations.
 
-4. Once you have the django admin going, go to **Sites** and add the site's domain in place of **example.com** - That because if you don't do that. The **View on Site** button will not work correctly.
-
-
-### Templates
-
-You may configure the base template that the templates in this package extend
-from by changing the `ETI_MARKETING_CMS_BASE_TEMPLATE` setting:
-
-```python
-ETI_MARKETING_CMS_BASE_TEMPLATE = 'my_base_template.html'
-```
-
-It defaults to `base.html`, so if that exists in your project you should be
-fine.
+4. Once you have the django admin going, go to **Sites** and add the site's domain in place of **example.com** so that the **View on Site** buttons in the admin will work correctly.
 
 ### Signup Form
 
@@ -113,6 +110,19 @@ data...)
 
 You can use the signup form _and_ the event tracking together by first setting
 up both components as detailed above, then setting the `ACTIVE_CAMPAIGN_SIGNUP_EVENT` option in your Django settings to the name of the event that should be tracked whenever the contact form is filled out.
+
+Templates
+---------
+
+You may configure the base template that the templates in this package extend
+from by changing the `ETI_MARKETING_CMS_BASE_TEMPLATE` setting:
+
+```python
+ETI_MARKETING_CMS_BASE_TEMPLATE = 'my_base_template.html'
+```
+
+It defaults to `base.html`, so if that exists in your project you should be
+fine.
 
 Development
 -----------

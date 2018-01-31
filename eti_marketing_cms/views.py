@@ -1,30 +1,10 @@
-from django.views.generic import DetailView, FormView
+from django.views.generic import FormView
 from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext_lazy as _
 from django.utils.module_loading import import_string
 
-from .models import LandingPage
-
-
-def _get_base_template():
-    return getattr(settings, 'ETI_MARKETING_CMS_BASE_TEMPLATE', 'base.html')
-
-
-class LandingPageView(DetailView):
-    template_name = 'eti_marketing_cms/landing.html'
-    context_object_name = 'landing'
-
-    def get_queryset(self):
-        if self.request.user.is_superuser:
-            return LandingPage.objects.all()
-        else:
-            return LandingPage.objects.published()
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['base_template'] = _get_base_template()
-        return context
+from .utils import get_base_template
 
 
 class SignupView(SuccessMessageMixin, FormView):
@@ -44,5 +24,5 @@ class SignupView(SuccessMessageMixin, FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['base_template'] = _get_base_template()
+        context['base_template'] = get_base_template()
         return context

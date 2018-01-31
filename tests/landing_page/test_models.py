@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.template.defaultfilters import truncatewords
-from eti_marketing_cms.models import LandingPage
+from eti_marketing_cms.landing_page.models import LandingPage
 
 
 class LandingPageTest(TestCase):
