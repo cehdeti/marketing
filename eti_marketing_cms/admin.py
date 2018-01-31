@@ -39,7 +39,7 @@ class LandingPageAdmin(admin.ModelAdmin):
             'fields': ('columns', 'column_1', 'column_2', 'sidebar', 'sidebar_text', 'footer')
         }),
         (_('Calls to Action'), {
-            'fields': ('cta', ('cta_text', 'cta_url'), ('socials', 'addthis_pubid'))
+            'fields': ('cta', ('cta_text', 'cta_url'), 'socials', ('addthis_pubid'))
         }),
         (_('Additional SEO'), {
             'classes': ('collapse',),
