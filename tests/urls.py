@@ -2,5 +2,5 @@ from django.conf.urls import include, url
 
 
 urlpatterns = [
-    url(r'^', include('eti_marketing_cms.landing_page.urls')),
+    url(r'^', include('eti_marketing.landing_page.urls')),
 ]

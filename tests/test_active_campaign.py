@@ -1,7 +1,7 @@
 from unittest import TestCase, mock
 import json
 import random
-from eti_marketing_cms import active_campaign as ac
+from eti_marketing import active_campaign as ac
 
 from faker import Faker
 fake = Faker()
@@ -19,7 +19,7 @@ def _mock_response(data=None):
 
 class SaveContactTests(TestCase):
 
-    @mock.patch('eti_marketing_cms.active_campaign.requests')
+    @mock.patch('eti_marketing.active_campaign.requests')
     def test_calls_api_with_the_payload(self, requests):
         api_url = fake.word()
         api_key = fake.word()
@@ -36,7 +36,7 @@ class SaveContactTests(TestCase):
             data=payload
         )
 
-    @mock.patch('eti_marketing_cms.active_campaign.requests')
+    @mock.patch('eti_marketing.active_campaign.requests')
     def test_adds_list_subscriptions(self, requests):
         requests.post.return_value = _mock_response()
         ac.ContactSaver(fake.word(), fake.word(), ['hello'])()
@@ -44,7 +44,7 @@ class SaveContactTests(TestCase):
         self.assertEqual(kwargs['data']['p[hello]'], 'hello')
         self.assertEqual(kwargs['data']['status[hello]'], 1)
 
-    @mock.patch('eti_marketing_cms.active_campaign.requests')
+    @mock.patch('eti_marketing.active_campaign.requests')
     def test_returns_the_unserialized_response(self, requests):
         api_url = fake.word()
         api_key = fake.word()
@@ -56,7 +56,7 @@ class SaveContactTests(TestCase):
         result = ac.ContactSaver(api_url, api_key)(**payload)
         self.assertEqual(result['hello'], 'im_here')
 
-    @mock.patch('eti_marketing_cms.active_campaign.requests')
+    @mock.patch('eti_marketing.active_campaign.requests')
     def test_updates_the_contact_if_it_already_exists(self, requests):
         api_url = fake.word()
         api_key = fake.word()
@@ -86,7 +86,7 @@ class SaveContactTests(TestCase):
         self.assertEqual(kwargs['data']['first_name'], 'New')
 
     @mock.patch('builtins.print')
-    @mock.patch('eti_marketing_cms.active_campaign.requests')
+    @mock.patch('eti_marketing.active_campaign.requests')
     def test_prints_and_returns_if_url_and_key_are_not_set(self, requests, mock_print):
         self.assertIsNone(ac.save_contact())
         mock_print.assert_called_once()
@@ -96,13 +96,13 @@ class SaveContactTests(TestCase):
 class TrackEventTests(TestCase):
 
     @mock.patch('builtins.print')
-    @mock.patch('eti_marketing_cms.active_campaign.requests')
+    @mock.patch('eti_marketing.active_campaign.requests')
     def test_prints_and_returns_if_url_and_key_are_not_set(self, requests, mock_print):
         self.assertIsNone(ac.track_event(fake.email(), fake.word()))
         mock_print.assert_called_once()
         requests.assert_not_called()
 
-    @mock.patch('eti_marketing_cms.active_campaign.requests')
+    @mock.patch('eti_marketing.active_campaign.requests')
     def test_calls_api_with_the_payload(self, requests):
         url = fake.word()
         actid = fake.word()
@@ -125,7 +125,7 @@ class TrackEventTests(TestCase):
             }])
         )
 
-    @mock.patch('eti_marketing_cms.active_campaign.requests')
+    @mock.patch('eti_marketing.active_campaign.requests')
     def test_returns_the_unserialized_response(self, requests):
         requests.post.return_value = _mock_response({'hello': 'hi'})
         result = ac.EventTracker(fake.word(), fake.word(), fake.word())(fake.email(), fake.word())

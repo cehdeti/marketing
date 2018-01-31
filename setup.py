@@ -16,14 +16,14 @@ def get_requirements_tests():
 
 
 setup(
-    name='django-eti-marketing-cms',
+    name='eti-marketing',
     version='0.1.5',
     packages=find_packages(),
     include_package_data=True,
     license='None',
     description='A simple Django UI for Marketing folks to add landing pages from the admin.',
     long_description=README,
-    url='https://github.com/cehdeti/eti-django-marketing-cms.git',
+    url='https://github.com/cehdeti/marketing.git',
     author='Mon Sucher',
     author_email='msucher@umn.edu',
     install_requires=['django<2', 'django-ckeditor', 'requests'],

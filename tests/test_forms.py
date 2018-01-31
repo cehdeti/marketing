@@ -1,5 +1,5 @@
 from unittest import TestCase, mock
-from eti_marketing_cms.forms import SignupForm
+from eti_marketing.forms import SignupForm
 
 from faker import Faker
 fake = Faker()
@@ -22,7 +22,7 @@ class SignupFormTests(TestCase):
     def test_validation(self):
         self.assertTrue(self.__subject.is_valid())
 
-    @mock.patch('eti_marketing_cms.forms.active_campaign')
+    @mock.patch('eti_marketing.forms.active_campaign')
     def test_creates_active_campaign_contact(self, ac):
         api_result = fake.word()
         ac.save_contact.return_value = api_result
@@ -42,8 +42,8 @@ class SignupFormTests(TestCase):
         }
         ac.save_contact.assert_called_once_with(**attrs)
 
-    @mock.patch('eti_marketing_cms.forms.active_campaign')
-    @mock.patch('eti_marketing_cms.forms.settings')
+    @mock.patch('eti_marketing.forms.active_campaign')
+    @mock.patch('eti_marketing.forms.settings')
     def test_tracks_a_signup_event_if_one_is_set(self, settings, ac):
         event = fake.word()
         settings.ACTIVE_CAMPAIGN_SIGNUP_EVENT = event

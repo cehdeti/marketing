@@ -1,5 +1,5 @@
-ETI Marketing CMS
-===============================
+ETI Marketing
+=============
 
 This is Django app that provides miscellaneous marketing functionality for ETI
 apps.
@@ -10,13 +10,13 @@ Installation
 * Make sure you have `virtualenv` activated
 
 ```bash
-  pip install git+https://github.com/cehdeti/eti-django-marketing-cms.git
+  pip install git+https://github.com/cehdeti/marketing.git
 ```
 
 If using `pipenv`
 
 ```
-  pipenv install git+https://github.com/cehdeti/eti-django-marketing-cms.git#egg=django-eti-marketing-cms
+  pipenv install git+https://github.com/cehdeti/marketing.git#egg=eti-marketing
 ```
 
 Setting up the Package
@@ -29,7 +29,7 @@ Django settings:
 ```python
   INSTALLED_APPS = [
     ...
-    'eti_marketing_cms',
+    'eti_marketing',
   ]
 ```
 
@@ -42,8 +42,8 @@ Read on for instructions on setting up each of apps.
 ```python
   INSTALLED_APPS = [
     ...
-    'eti_marketing_cms',
-    'eti_marketing_cms.landing_page',
+    'eti_marketing',
+    'eti_marketing.landing_page',
     'ckeditor',
   ]
 ```
@@ -51,7 +51,7 @@ Read on for instructions on setting up each of apps.
 2. Include the URLs in your main URL conf:
 
 ```python
-  url(r'^', include('eti_marketing_cms.landing_page.urls')),
+  url(r'^', include('eti_marketing.landing_page.urls')),
 ```
 
 3. Run `python manage.py migrate` to run the database migrations.
@@ -66,13 +66,13 @@ following config in your Django settings at a minimum:
 * `ACTIVE_CAMPAIGN_API_URL`: The URL your AC instance resides at.
 * `ACTIVE_CAMPAIGN_API_KEY`: API key
 
-Then, add a URL conf for the `eti_marketing_cms.views.SignupView` view:
+Then, add a URL conf for the `eti_marketing.views.SignupView` view:
 
 ```python
 # urls.py
 
 from django.conf.urls import url
-from eti_marketing_cms.views import SignupView
+from eti_marketing.views import SignupView
 
 urlpatterns = [
   url(r'^signup/$', SignupView.as_view(), name='signup'),
@@ -84,13 +84,13 @@ You may also optionally specify a `ACTIVE_CAMPAIGN_LIST_SUBSCRIPTIONS` setting, 
 Feel free to subclass the `SignupForm` class if you need to provide additional
 fields or change the mapping of form fields to Active Campaign fields. If you
 end up subclassing the form but do not wish to also subclass the `SignupView`,
-you can set the `ETI_MARKETING_CMS_SIGNUP_FORM_CLASS` Django setting to the
+you can set the `ETI_MARKETING_SIGNUP_FORM_CLASS` Django setting to the
 fully-qualified class name of your form and it will be used instead.
 
 ### Active Campaign Event Tracking
 
 Additionally, you may also track events with Active Campaign using the
-`eti_marketing_cms.active_campaign.track_event` function. To use it, first
+`eti_marketing.active_campaign.track_event` function. To use it, first
 configure the following options in your Django settings:
 
 * `ACTIVE_CAMPAIGN_EVENT_URL`: URL to post events to. Defaults to `https://trackcmp.net/event`.
@@ -100,7 +100,7 @@ configure the following options in your Django settings:
 Then call it like so:
 
 ```python
-from eti_marketing_cms.active_campaign import track_event
+from eti_marketing.active_campaign import track_event
 
 track_event('test@example.com', 'my_event_name', ...an optional dict of event
 data...)
@@ -115,10 +115,10 @@ Templates
 ---------
 
 You may configure the base template that the templates in this package extend
-from by changing the `ETI_MARKETING_CMS_BASE_TEMPLATE` setting:
+from by changing the `ETI_MARKETING_BASE_TEMPLATE` setting:
 
 ```python
-ETI_MARKETING_CMS_BASE_TEMPLATE = 'my_base_template.html'
+ETI_MARKETING_BASE_TEMPLATE = 'my_base_template.html'
 ```
 
 It defaults to `base.html`, so if that exists in your project you should be

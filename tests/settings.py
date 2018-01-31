@@ -2,8 +2,8 @@ SECRET_KEY = 'NOTASECRET'
 
 
 INSTALLED_APPS = [
-    'eti_marketing_cms',
-    'eti_marketing_cms.landing_page',
+    'eti_marketing',
+    'eti_marketing.landing_page',
     'ckeditor',
 ]
 
