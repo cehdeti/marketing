@@ -20,7 +20,7 @@ make_unpublished.short_description = _('Hide Selected Pages')
 @admin.register(LandingPage)
 class LandingPageAdmin(admin.ModelAdmin):
     readonly_fields = ['last_updated']
-    prepopulated_fields = {"slug": ["title"]}
+    prepopulated_fields = {'slug': ['title']}
     list_display = ['short_title', 'added_date', 'last_updated', 'published']
     list_filter = ['title', 'added_date', 'last_updated', 'published']
     search_fields = ['title']
@@ -33,7 +33,7 @@ class LandingPageAdmin(admin.ModelAdmin):
             'fields': ('title', 'slug', 'last_updated',)
         }),
         (_('Header'), {
-            'fields': (('header',), 'subheader',)
+            'fields': ('header', 'subheader',)
         }),
         (_('Layouts'), {
             'fields': ('columns', 'column_1', 'column_2', 'sidebar', 'sidebar_text', 'footer')
