@@ -1,0 +1,42 @@
+{% extends base_template %}
+{% load i18n %}
+
+{% block title %}
+  {% trans "News" %}
+{% endblock title %}
+
+{% block content %}
+  <article class="page-news">
+    <div class="page-content">
+      <article class="news-articles">
+        {% for article in news %}
+          <div class="news-article">
+            <div class="news-article-description">
+              <h4 class="news-article-title">
+                <a href="{{ article.get_absolute_url }}">
+                  {{ article.title|truncatewords_html:8 }}
+                </a>
+                <small class="news-article-date">{{ article.added_date|date:"m/d/y" }}</small>
+              </h4>
+
+              <div class="news-article-text">
+                {{ article.column_1|safe|truncatewords_html:20 }}
+              </div>
+            </div>
+
+            <footer class="news-article-footer">
+              <a href="{{ article.get_absolute_url }}" class="btn btn-primary">
+                {% trans "Read More" %}
+              </a>
+            </footer>
+          </div>
+        {% empty %}
+          <section class="col-12 text-center">
+            <h3 class="text-uppercase mb-4">{% trans "No articles available" %}</h3>
+          </section>
+        {% endfor %}
+      </article>
+    </div>
+  </article>
+{% endblock %}
+

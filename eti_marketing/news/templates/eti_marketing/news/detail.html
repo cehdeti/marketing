@@ -1,0 +1,74 @@
+{% extends base_template %}
+{% load i18n %}
+
+{% block title %}
+  {{ block.super }}{{ article.title }}
+{% endblock title %}
+
+{% block meta_keywords %}
+	{{ article.seo_keywords }}
+{% endblock %}
+{% block meta_description %}
+	{{ article.seo_description }}
+{% endblock %}
+{% block extra_meta %}
+  <meta property="og:url"                content="{{ current_url }}" />
+  <meta property="og:type"               content="article" />
+  <meta property="og:title"              content="{{ article.title }}" />
+  <meta property="og:description"        content="{{ article.column_1|striptags|truncatewords:25 }}" />
+{% endblock extra_meta %}
+
+{% block content %}
+  <article class="article">
+    <section class="page-content page-landing-content{% if article.sidebar %} has-sidebar{% endif %}">
+      {% if article.sidebar %}
+        <aside class="page-landing-sidebar">
+          {{ article.sidebar_text|safe }}
+        </aside>
+      {% endif %}
+
+      <div class="article-body {{ article.columns|lower }}">
+        <div class="row no-gutters">
+
+        {% if article.subheader %}
+          <header class="page-landing-headers">
+            <h2 class="page-landing-title">{{ article.subheader }}</h2>
+          </header>
+        {% endif %}
+
+        {% if article.columns == "HALF" %}
+          <div class="page-content-left">
+            {{ article.column_1|safe }}
+          </div>
+          <div class="page-content-right">
+            {{ article.column_2|safe }}
+          </div>
+        {% else %}
+          <div class="col-12 pl-0">
+            {{ article.column_1|safe }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="col-12 pl-0 mt-4">
+        {% if article.cta %}
+          {{ cta_html|safe }}
+        {% endif %}
+
+        {% if article.socials %}
+          <div class="page-landing-socials">
+            <h5 class="h6 text-uppercase">{% trans "Share this article" %}</h5>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ article.addthis_pubid }}"></script>
+            <div class="social-media">
+              <div class="addthis_inline_share_toolbox"></div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    {% if article.footer %}
+      {% include 'includes/page-footer.html' %}
+    {% endif %}
+  </article>
+{% endblock %}
