@@ -48,10 +48,11 @@ Read on for instructions on setting up each of apps.
   ]
 ```
 
-2. Include the URLs in your main URL conf:
+2. Include the URLs in your main URL conf. Usually, we like to put these URLs
+   into some kind of namespace.
 
 ```python
-  url(r'^', include('eti_marketing.landing_page.urls')),
+  url(r'^p/', include('eti_marketing.landing_page.urls')),
 ```
 
 3. Run `python manage.py migrate` to run the database migrations.
