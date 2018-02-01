@@ -1,8 +1,8 @@
 {% extends base_template %}
-{% load i18n staticfiles %}
+{% load i18n %}
 
 {% block title %}
-    {{ block.super }}{{ landing.title }}
+  {{ block.super }}{{ landing.title }}
 {% endblock title %}
 
 {% block meta_keywords %}
@@ -16,7 +16,6 @@
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="{{ landing.title }}" />
     <meta property="og:description"        content="{{ landing.column_1|striptags|truncatewords:25 }}" />
-    <meta property="og:image"              content="{% static 'images/dexalytics-logo.png' %}" />
 {% endblock extra_meta %}
 
 {% block content %}
@@ -28,7 +27,7 @@
 	    </header>
 		{% endif %}
 
-		{% if landing.columns == 'HALF' %}
+		{% if landing.columns == "HALF" %}
 			<section class="column-1">
 				{{ landing.column_1|safe }}
 			</section>
