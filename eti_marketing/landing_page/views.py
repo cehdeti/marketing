@@ -1,10 +1,10 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView as BaseDetailView
 
 from .models import LandingPage
 from eti_marketing.utils import get_base_template
 
 
-class LandingPageView(DetailView):
+class DetailView(BaseDetailView):
     model = LandingPage
     template_name = 'eti_marketing/landing_page/detail.html'
     context_object_name = 'landing'
