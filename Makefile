@@ -1,3 +1,6 @@
+.PHONY: default
+default: init test lint
+
 init:
 	pip install -r requirements.txt
 
