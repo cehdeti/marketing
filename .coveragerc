@@ -1,6 +1,6 @@
 [run]
 source = .
-omit = */test_*.py
+omit = setup.py,manage.py,tests/*.py
 
 [report]
 exclude_lines =
