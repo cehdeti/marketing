@@ -1,0 +1,32 @@
+{% load i18n %}
+
+{% if slides %}
+  <div class="carousel slide" id="preview">
+    <ol class="carousel-indicators">
+      {% for slide in slides %}
+        <li data-target="#preview" data-slide-to="{{ forloop.counter0 }}"></li>
+      {% endfor %}
+    </ol>
+
+    <div class="carousel-inner">
+      {% for slide in slides %}
+        <div class="carousel-item{% if forloop.first %} active{% endif %}">
+          <h3 class="h4">{{ slide.title }}</h3>
+          {{ slide.caption|safe }}
+          <img src="{{ slide.screenshot.url }}" />
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if slides|length > 1 %}
+      <a class="carousel-control-prev" href="#preview" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">{% trans "Previous" %}</span>
+      </a>
+      <a class="carousel-control-next" href="#preview" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">{% trans "Next" %}</span>
+      </a>
+    {% endif %}
+  </div>
+{% endif %}

@@ -26,7 +26,13 @@ setup(
     url='https://github.com/cehdeti/marketing.git',
     author='Mon Sucher',
     author_email='msucher@umn.edu',
-    install_requires=['django<2', 'django-ckeditor', 'requests'],
+    install_requires=[
+        'django<2',
+        'django-admin-sortable2',
+        'django-ckeditor',
+        'pillow',
+        'requests'
+    ],
     tests_require=get_requirements_tests(),
     test_suite='tests',
     classifiers=[

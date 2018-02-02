@@ -1,0 +1,16 @@
+#preview {
+  position: relative;
+  margin: auto;
+
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+  }
+
+  .next {
+    right: 0;
+  }
+}

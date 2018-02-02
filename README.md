@@ -37,6 +37,9 @@ Read on for instructions on setting up each of apps.
 
 ### Landing Pages
 
+The `landing_page` app provides targeted Landing Pages that can be tailored to
+specific audiences.
+
 1. Add app to `INSTALLED_APPS`:
 
 ```python
@@ -53,6 +56,31 @@ Read on for instructions on setting up each of apps.
 
 ```python
   url(r'^p/', include('eti_marketing.landing_page.urls')),
+```
+
+3. Run `python manage.py migrate` to run the database migrations.
+
+4. Once you have the django admin going, go to **Sites** and add the site's domain in place of **example.com** so that the **View on Site** buttons in the admin will work correctly.
+
+### Preview
+
+The `preview` app provides a simple slideshow for users to preview the app.
+
+1. Add app to `INSTALLED_APPS`:
+
+```python
+  INSTALLED_APPS = [
+    ...
+    'eti_marketing',
+    'eti_marketing.preview',
+    'ckeditor',
+  ]
+```
+
+2. Tie the view to a specific URL:
+
+```python
+  url(r'^preview/', include('eti_marketing.preview.urls')),
 ```
 
 3. Run `python manage.py migrate` to run the database migrations.
