@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name': 'Slide',
-                'ordering': ['sortable_order'],
+                'ordering': ('sortable_order',),
             },
         ),
     ]
