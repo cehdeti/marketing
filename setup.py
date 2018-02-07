@@ -16,15 +16,15 @@ def get_requirements_tests():
 
 
 setup(
-    name='eti-marketing',
-    version='0.1.5',
+    name='eti_marketing',
+    version='0.1.6',
     packages=find_packages(),
     include_package_data=True,
     license='None',
     description='A simple Django UI for Marketing folks to add landing pages from the admin.',
     long_description=README,
     url='https://github.com/cehdeti/marketing.git',
-    author='Mon Sucher',
+    author=['Mon Sucher', 'Jake Bell'],
     author_email='msucher@umn.edu',
     install_requires=[
         'django<2',
