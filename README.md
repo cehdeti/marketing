@@ -69,7 +69,7 @@ specific audiences.
 
 ### Preview
 
-The `preview` app provides a simple slideshow for users to preview the app.
+The `preview` app provides a simple slideshow for users to preview the app. It also contains a nice drag and drop UI to sort the slides using [`django-admin-sortable2`](http://django-admin-sortable2.readthedocs.io/en/latest/installation.html)
 
 1. Add app to `INSTALLED_APPS`:
 
@@ -79,6 +79,7 @@ The `preview` app provides a simple slideshow for users to preview the app.
     'eti_marketing',
     'eti_marketing.preview',
     'ckeditor',
+    'adminsortable2',
   ]
 ```
 
