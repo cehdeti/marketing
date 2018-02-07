@@ -21,7 +21,7 @@ Don't forget to add this to `requirements.txt` if you are _not_ using `pipenv`:
 If using `pipenv`
 
 ```
-  pipenv install git+https://github.com/cehdeti/marketing.git#egg=eti-marketing
+  pipenv install git+https://github.com/cehdeti/marketing.git#egg=eti_marketing
 ```
 
 Setting up the Package
