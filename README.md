@@ -12,6 +12,11 @@ Installation
 ```bash
   pip install git+https://github.com/cehdeti/marketing.git
 ```
+Don't forget to add this to `requirements.txt` if you are _not_ using `pipenv`:
+
+```bash
+  -e git+https://github.com/cehdeti/marketing.git#egg=eti-marketing
+```
 
 If using `pipenv`
 
