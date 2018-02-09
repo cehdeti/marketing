@@ -104,7 +104,6 @@ class TrackEventTests(TestCase):
 
     @mock.patch('eti_marketing.active_campaign.requests')
     def test_calls_api_with_the_payload(self, requests):
-        url = fake.word()
         actid = fake.word()
         key = fake.word()
         email = fake.email()
@@ -113,10 +112,10 @@ class TrackEventTests(TestCase):
 
         requests.post.return_value = _mock_response()
 
-        ac.EventTracker(url, actid, key)(email, event, event_data)
+        ac.EventTracker(actid, key)(email, event, event_data)
 
         requests.post.assert_called_once_with(
-            url, data=json.dumps([{
+            mock.ANY, data=json.dumps([{
                 'event': event,
                 'event_data': event_data,
                 'visit': {'email': email},
@@ -128,5 +127,5 @@ class TrackEventTests(TestCase):
     @mock.patch('eti_marketing.active_campaign.requests')
     def test_returns_the_unserialized_response(self, requests):
         requests.post.return_value = _mock_response({'hello': 'hi'})
-        result = ac.EventTracker(fake.word(), fake.word(), fake.word())(fake.email(), fake.word())
+        result = ac.EventTracker(fake.word(), fake.word())(fake.email(), fake.word())
         self.assertEqual(result['hello'], 'hi')

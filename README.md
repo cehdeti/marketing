@@ -40,6 +40,38 @@ Django settings:
 
 Read on for instructions on setting up each of apps.
 
+### Google Analytics/GTM/Active Campaign visits
+
+This package contains template tags you can use to output GA, GTM, and AC
+tracking scripts. First, configure the following settings (you don't need all
+of them if they don't apply):
+
+* `GOOGLE_ANALYTICS_ID`: The ID of your Google Analytics account (UA-xxxxxx-x).
+* `GOOGLE_TAGMANAGER_ID`: The ID of your GTM account (GTM-xxxxxx).
+* `ACTIVE_CAMPAIGN_EVENT_ACTID`: The ID for your AC events (numeric)
+
+Then in your template, do this:
+
+```
+{% load marketing %}
+
+<html>
+<head>
+  ...
+  {% google_analytics %}
+  {% google_tagmanager %}
+  {% active_campaign_event_tracker %}
+  ...
+</head>
+<body>
+  {% google_tagmanager_noscript %}
+</body>
+</html>
+```
+
+No conditional logic should be necessary to include the tags; if the settings above are not
+configured, the template tags will simply not print the scripts.
+
 ### Landing Pages
 
 The `landing_page` app provides targeted Landing Pages that can be tailored to
@@ -128,7 +160,6 @@ Additionally, you may also track events with Active Campaign using the
 `eti_marketing.active_campaign.track_event` function. To use it, first
 configure the following options in your Django settings:
 
-* `ACTIVE_CAMPAIGN_EVENT_URL`: URL to post events to. Defaults to `https://trackcmp.net/event`.
 * `ACTIVE_CAMPAIGN_EVENT_ACTID`: ActID for the events API
 * `ACTIVE_CAMPAIGN_EVENT_KEY`: Key for the events API
 

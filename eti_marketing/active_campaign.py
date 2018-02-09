@@ -8,7 +8,6 @@ Configuration options:
     * `ACTIVE_CAMPAIGN_LIST_SUBSCRIPTIONS`: Additional lists you'd like to
         subscribe all new contacts to.
 
-    * `ACTIVE_CAMPAIGN_EVENT_URL`: URL to post events to. Defaults to `https://trackcmp.net/event`.
     * `ACTIVE_CAMPAIGN_EVENT_ACTID`: ActID for the events API
     * `ACTIVE_CAMPAIGN_EVENT_KEY`: Key for the events API
 """
@@ -92,8 +91,7 @@ class EventTracker(object):
     from Django's settings instead.
     """
 
-    def __init__(self, event_url, event_actid, event_key):
-        self.__event_url = event_url
+    def __init__(self, event_actid, event_key):
         self.__event_actid = event_actid
         self.__event_key = event_key
 
@@ -114,12 +112,11 @@ class EventTracker(object):
         else:
             payload.update(actid=self.__event_actid, key=self.__event_key)
 
-        result = requests.post(self.__event_url, data=json.dumps([payload]))
+        result = requests.post('https://trackcmp.net/event', data=json.dumps([payload]))
         return json.loads(result.text)
 
 
 track_event = EventTracker(
-    getattr(settings, 'ACTIVE_CAMPAIGN_EVENT_URL', 'https://trackcmp.net/event'),
     getattr(settings, 'ACTIVE_CAMPAIGN_EVENT_ACTID', None),
     getattr(settings, 'ACTIVE_CAMPAIGN_EVENT_KEY', None),
 )
