@@ -11,6 +11,7 @@ from ckeditor.fields import RichTextField
 
 @python_2_unicode_compatible
 class Slide(models.Model):
+
     title = models.CharField(max_length=150, blank=True, null=True)
     caption = RichTextField(max_length=500, blank=True, null=True)
     screenshot = models.ImageField(upload_to='preview')
@@ -25,3 +26,25 @@ class Slide(models.Model):
     class Meta(object):
         ordering = ('sortable_order',)
         verbose_name = _('Slide')
+
+
+class SlideWaypoint(models.Model):
+
+    slide = models.ForeignKey(Slide, models.CASCADE, related_name='waypoint_set')
+    title = models.CharField(max_length=150, blank=True, null=True)
+    text = RichTextField()
+    x_position = models.FloatField()
+    y_position = models.FloatField()
+
+    @property
+    def position(self):
+        return (self.x_position, self.y_position)
+
+    def __str__(self):
+        if self.title:
+            return self.title
+        else:
+            return _('Waypoint at %s x %s') % self.position
+
+    class Meta(object):
+        verbose_name = _('Slide Waypoint')

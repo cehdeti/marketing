@@ -18,5 +18,9 @@
         }
       });
     }
+
+    if ($.isFunction($.fn.popover)) {
+      $('#preview .slide-waypoint').popover();
+    }
   });
 })(jQuery);

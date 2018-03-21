@@ -13,6 +13,9 @@
         <div class="carousel-item{% if forloop.first %} active{% endif %}">
           <h3 class="h4">{{ slide.title }}</h3>
           {{ slide.caption|safe }}
+          {% for waypoint in slide.waypoint_set.all %}
+            {% include "eti_marketing/preview/_waypoint.html" with waypoint=waypoint %}
+          {% endfor %}
           <img src="{{ slide.screenshot.url }}" />
         </div>
       {% endfor %}
