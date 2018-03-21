@@ -9,7 +9,7 @@ def _tracking_script(setting_name, script):
     tag_id = getattr(settings, setting_name, None)
 
     if not tag_id:
-        return
+        return ''
 
     return format_html(script, tag_id)
 
