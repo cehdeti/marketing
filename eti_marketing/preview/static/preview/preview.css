@@ -15,6 +15,10 @@
   right: 0;
 }
 
+#preview .slide-waypoints {
+  height: 0px;  /* Hides the spaces created by relatively positioning the waypoints. */
+}
+
 #preview .slide-waypoint {
   position: relative;
   z-index: 9;
