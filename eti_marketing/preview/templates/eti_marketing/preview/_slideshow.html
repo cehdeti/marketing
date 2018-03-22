@@ -14,11 +14,9 @@
           <h3 class="h4">{{ slide.title }}</h3>
           {{ slide.caption|safe }}
           <div class="slide-image-container">
-            <div class="slide-waypoints">
-              {% for waypoint in slide.waypoint_set.all %}
-                {% include "eti_marketing/preview/_waypoint.html" with waypoint=waypoint %}
-              {% endfor %}
-            </div>
+            {% for waypoint in slide.waypoint_set.all %}
+              {% include "eti_marketing/preview/_waypoint.html" with waypoint=waypoint %}
+            {% endfor %}
             <img src="{{ slide.screenshot.url }}" />
           </div>
         </div>
