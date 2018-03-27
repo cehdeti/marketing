@@ -1,2 +1,2 @@
 include README.md
-recursive-include eti_marketing *.py *.html *.js
+recursive-include eti_marketing *.py *.css *.html *.js
