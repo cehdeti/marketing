@@ -39,5 +39,6 @@ smmap2==2.0.3
 stevedore==1.28.0
 swapper==1.1.0
 text-unidecode==1.1
+unittest-xml-reporting==2.1.1
 urllib3==1.22
 wcwidth==0.1.7
