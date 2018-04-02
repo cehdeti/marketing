@@ -20,7 +20,7 @@ class GoogleAnalyticsTests(TestCase):
     @mock.patch('eti_marketing.templatetags.marketing.settings')
     def test_returns_nothing_if_not(self, settings):
         settings.GOOGLE_ANALYTICS_ID = None
-        self.assertIsNone(tags.google_analytics())
+        self.assertEqual(tags.google_analytics(), '')
 
 
 class GoogleTagManagerTests(TestCase):
@@ -37,7 +37,7 @@ class GoogleTagManagerTests(TestCase):
     @mock.patch('eti_marketing.templatetags.marketing.settings')
     def test_returns_nothing_if_not(self, settings):
         settings.GOOGLE_TAGMANAGER_ID = None
-        self.assertIsNone(tags.google_tagmanager())
+        self.assertEqual(tags.google_tagmanager(), '')
 
 
 class GoogleTagManagerNoscriptTests(TestCase):
@@ -55,7 +55,7 @@ class GoogleTagManagerNoscriptTests(TestCase):
     @mock.patch('eti_marketing.templatetags.marketing.settings')
     def test_returns_nothing_if_not(self, settings):
         settings.GOOGLE_TAGMANAGER_ID = None
-        self.assertIsNone(tags.google_tagmanager_noscript())
+        self.assertEqual(tags.google_tagmanager_noscript(), '')
 
 
 class ActiveCampaignEventTrackerTests(TestCase):
@@ -71,4 +71,4 @@ class ActiveCampaignEventTrackerTests(TestCase):
     @mock.patch('eti_marketing.templatetags.marketing.settings')
     def test_returns_nothing_if_not(self, settings):
         settings.ACTIVE_CAMPAIGN_EVENT_ACTID = None
-        self.assertIsNone(tags.active_campaign_event_tracker())
+        self.assertEqual(tags.active_campaign_event_tracker(), '')
