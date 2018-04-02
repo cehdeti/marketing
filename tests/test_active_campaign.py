@@ -1,9 +1,10 @@
 from unittest import TestCase, mock
 import json
 import random
+from faker import Faker
 from eti_marketing import active_campaign as ac
 
-from faker import Faker
+srandom = random.SystemRandom()
 fake = Faker()
 
 
@@ -61,7 +62,7 @@ class SaveContactTests(TestCase):
         api_url = fake.word()
         api_key = fake.word()
         payload = {'first_name': 'New'}
-        existing_subscriber_id = random.randint(0, 10)
+        existing_subscriber_id = srandom.randint(0, 10)
 
         requests.post.side_effect = [
             _mock_response({
