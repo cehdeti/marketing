@@ -114,15 +114,13 @@ class TrackEventTests(TestCase):
 
         ac.EventTracker(actid, key)(email, event, event_data)
 
-        requests.post.assert_called_once_with(
-            mock.ANY, data=json.dumps([{
-                'event': event,
-                'event_data': event_data,
-                'visit': {'email': email},
-                'actid': actid,
-                'key': key,
-            }])
-        )
+        self.assertEqual(json.loads(requests.post.call_args[1]['data']), [{
+            'event': event,
+            'event_data': event_data,
+            'visit': {'email': email},
+            'actid': actid,
+            'key': key,
+        }])
 
     @mock.patch('eti_marketing.active_campaign.requests')
     def test_returns_the_unserialized_response(self, requests):
