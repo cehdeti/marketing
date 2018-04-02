@@ -15,7 +15,11 @@ Configuration options:
 import requests
 import json
 import copy
+import logging
 from django.conf import settings
+
+
+logger = logging.getLogger(__name__)
 
 
 class ContactSaver(object):
@@ -41,7 +45,7 @@ class ContactSaver(object):
             payload['p[%s]' % sub] = sub  # This subscribes them to the list.
 
         if not self.__add_contact_url:
-            print("""
+            logger.info("""
                 Received ActiveCampaign submission, but API URL and/or key are not
                 set up. Here is the data:
                 Payload: %s
@@ -103,7 +107,7 @@ class EventTracker(object):
         }
 
         if not self.__event_actid or not self.__event_key:
-            print("""
+            logger.info("""
                 Received ActiveCampaign event, but credentials are not set up.
                 Here is the data:
                 Data: %s
