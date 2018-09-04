@@ -22,6 +22,82 @@ from django.conf import settings
 logger = logging.getLogger(__name__)
 
 
+class Client(object):
+    """
+    General use API client for ActiveCampaign API.
+    """
+
+    def __init__(self, url, key):
+        self._url = url
+        self._key = key
+
+    @property
+    def is_live(self):
+        """
+        Whether or not this API client has valid credentials and is configured
+        to make actual API calls. This allows the client to be used seamlessly
+        in local environments where we don't want to call the API.
+        """
+        return bool(self._url) and bool(self._key)
+
+    ###########
+    # Begin API
+    ###########
+
+    ##########
+    # Contacts
+    ##########
+
+    def get_contact_by_email(self, email):
+        try:
+            result = self._do_json('contact_view_email', params={'email': email})
+        except json.JsonDecodeError:
+            return None
+
+        return result if result.get('result_code') == 1 else None
+
+    def add_contact(self, **data):
+        return self._do_json('contact_add', 'post', data=data)
+
+    def edit_contact(self, **data):
+        return self._do_json('contact_edit', 'post', data=data, params={'overwrite': '0'})
+
+    #########
+    # End API
+    #########
+
+    def _do_json(self, *args, **kwargs):
+        response = self._do_request(*args, **kwargs)
+
+        try:
+            return response.json()
+        except Exception as e:
+            logger.error("""
+                error calling api:
+                URL: %s
+                result: %s
+                result status %s
+                could not decode result json: %s
+            """ % (response.url, response.text, response.status_code, e))
+
+    def _do_request(self, action, method='get', **kwargs):
+        params = kwargs.pop('params', {})
+        params['api_action'] = action
+        params = self._params(**params)
+        return requests.request(method, '%s/admin/api.php' % self._url, params=params, **kwargs)
+
+    def _params(self, **params):
+        params.setdefault('api_key', self._key)
+        params.setdefault('api_output', 'json')
+        return params
+
+
+client = Client(
+    getattr(settings, 'ACTIVE_CAMPAIGN_API_URL', None),
+    getattr(settings, 'ACTIVE_CAMPAIGN_API_KEY', None),
+)
+
+
 class ContactSaver(object):
     """
     Saves a contact record to ActiveCampaign.
@@ -31,20 +107,18 @@ class ContactSaver(object):
     from Django's settings instead.
     """
 
-    def __init__(self, api_url, api_key, list_subscriptions=[]):
-        self.__api_url = api_url
-        self.__api_key = api_key
-        self.__set_api_urls()
-        self.__list_subscriptions = list_subscriptions
+    def __init__(self, client, list_subscriptions=[]):
+        self._client = client
+        self._list_subscriptions = list_subscriptions
 
     def __call__(self, **data):
         payload = copy.deepcopy(data)
 
-        for sub in self.__list_subscriptions:
+        for sub in self._list_subscriptions:
             payload['status[%s]' % sub] = 1  # This sets their subscription status for list to active.
             payload['p[%s]' % sub] = sub  # This subscribes them to the list.
 
-        if not self.__add_contact_url:
+        if not self._client.is_live:
             logger.info("""
                 Received ActiveCampaign submission, but API URL and/or key are not
                 set up. Here is the data:
@@ -52,36 +126,22 @@ class ContactSaver(object):
                 """ % payload)
             return
 
-        result = requests.post(self.__add_contact_url, data=payload)
-        result_data = json.loads(result.text)
+        result_data = self._client.add_contact(**payload)
 
         if result_data['result_code'] != 1 and \
-                'does not allow duplicates' in result_data['result_message']:
+                '0' in result_data and \
+                'subscriberid' in result_data['0']:
             # Update contact instead
-            existing_contact = result_data['0']
-            contact_id = existing_contact['subscriberid']
-
             payload = copy.deepcopy(payload)
-            payload['id'] = contact_id
+            payload['id'] = result_data['0']['subscriberid']
 
-            result = requests.post(self.__edit_contact_url, data=payload)
-            result_data = json.loads(result.text)
+            result_data = self._client.edit_contact(**payload)
 
         return result_data
 
-    def __set_api_urls(self):
-        if self.__api_url and self.__api_key:
-            params = (self.__api_url, self.__api_key)
-            self.__add_contact_url = '%s/admin/api.php?api_key=%s&api_output=json&api_action=contact_add' % params
-            self.__edit_contact_url = '%s/admin/api.php?api_key=%s&api_output=json&api_action=contact_edit&overwrite=0' % params
-        else:
-            self.__add_contact_url = None
-            self.__edit_contact_url = None
-
 
 save_contact = ContactSaver(
-    getattr(settings, 'ACTIVE_CAMPAIGN_API_URL', None),
-    getattr(settings, 'ACTIVE_CAMPAIGN_API_KEY', None),
+    client,
     getattr(settings, 'ACTIVE_CAMPAIGN_LIST_SUBSCRIPTIONS', []),
 )
 

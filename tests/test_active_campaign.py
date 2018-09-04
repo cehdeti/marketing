@@ -15,74 +15,71 @@ def _mock_response(data=None):
         data = {'result_code': 1}
 
     mock_response.text = json.dumps(data)
+    mock_response.json.return_value = data
     return mock_response
 
 
 class SaveContactTests(TestCase):
 
+    def setUp(self):
+        super().setUp()
+        self.api_url = fake.word()
+        self.api_key = fake.word()
+        self.client = ac.Client(self.api_url, self.api_key)
+
     @mock.patch('eti_marketing.active_campaign.requests')
     def test_calls_api_with_the_payload(self, requests):
-        api_url = fake.word()
-        api_key = fake.word()
         payload = {fake.word(): fake.word()}
 
-        requests.post.return_value = _mock_response()
+        requests.request.return_value = _mock_response()
 
-        ac.ContactSaver(api_url, api_key)(**payload)
+        ac.ContactSaver(self.client)(**payload)
 
-        requests.post.assert_called_once_with(
-            '%s/admin/api.php?api_key=%s&api_output=json&api_action=contact_add' % (
-                api_url, api_key
-            ),
+        requests.request.assert_called_once_with(
+            'post',
+            '%s/admin/api.php' % self.api_url,
+            params={'api_key': self.api_key, 'api_output': 'json', 'api_action': 'contact_add'},
             data=payload
         )
 
     @mock.patch('eti_marketing.active_campaign.requests')
     def test_adds_list_subscriptions(self, requests):
-        requests.post.return_value = _mock_response()
-        ac.ContactSaver(fake.word(), fake.word(), ['hello'])()
-        args, kwargs = requests.post.call_args
+        requests.request.return_value = _mock_response()
+        ac.ContactSaver(self.client, ['hello'])()
+        __, kwargs = requests.request.call_args
         self.assertEqual(kwargs['data']['p[hello]'], 'hello')
         self.assertEqual(kwargs['data']['status[hello]'], 1)
 
     @mock.patch('eti_marketing.active_campaign.requests')
     def test_returns_the_unserialized_response(self, requests):
-        api_url = fake.word()
-        api_key = fake.word()
         payload = {fake.word(): fake.word()}
         response = {'hello': 'im_here', 'result_code': 1}
 
-        requests.post.return_value = _mock_response(response)
+        requests.request.return_value = _mock_response(response)
 
-        result = ac.ContactSaver(api_url, api_key)(**payload)
+        result = ac.ContactSaver(self.client)(**payload)
         self.assertEqual(result['hello'], 'im_here')
 
     @mock.patch('eti_marketing.active_campaign.requests')
     def test_updates_the_contact_if_it_already_exists(self, requests):
-        api_url = fake.word()
-        api_key = fake.word()
         payload = {'first_name': 'New'}
         existing_subscriber_id = srandom.randint(0, 10)
 
-        requests.post.side_effect = [
+        requests.request.side_effect = [
             _mock_response({
-                'result_message': 'does not allow duplicates',
                 'result_code': 0,
                 '0': {'subscriberid': existing_subscriber_id, 'first_name': 'Test', 'last_name': 'Person'}
             }),
             _mock_response({'updated': True}),
         ]
 
-        result = ac.ContactSaver(api_url, api_key)(**payload)
+        result = ac.ContactSaver(self.client)(**payload)
 
         self.assertTrue(result['updated'])
 
-        self.assertEqual(requests.post.call_count, 2)
-        args, kwargs = requests.post.call_args
-        self.assertEqual(
-            args[0],
-            '%s/admin/api.php?api_key=%s&api_output=json&api_action=contact_edit&overwrite=0' % (api_url, api_key)
-        )
+        self.assertEqual(requests.request.call_count, 2)
+        __, kwargs = requests.request.call_args
+        self.assertEqual(kwargs['params']['api_action'], 'contact_edit')
         self.assertEqual(kwargs['data']['id'], existing_subscriber_id)
         self.assertEqual(kwargs['data']['first_name'], 'New')
 
