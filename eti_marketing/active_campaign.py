@@ -13,11 +13,15 @@ Configuration options:
 """
 
 import requests
-import json
 import copy
 import logging
 from django.conf import settings
 
+import json
+if hasattr(json, 'JSONDecodeError'):
+    JSONError = json.JSONDecodeError
+else:
+    JSONError = ValueError
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +55,7 @@ class Client(object):
     def get_contact_by_email(self, email):
         try:
             result = self._do_json('contact_view_email', params={'email': email})
-        except json.JsonDecodeError:
+        except JSONError:
             return None
 
         return result if result.get('result_code') == 1 else None
