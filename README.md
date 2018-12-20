@@ -40,15 +40,16 @@ Django settings:
 
 Read on for instructions on setting up each of apps.
 
-### Google Analytics/GTM/Active Campaign visits
+### Google Analytics/GTM/Active Campaign/Twitter Trackers
 
 This package contains template tags you can use to output GA, GTM, and AC
-tracking scripts. First, configure the following settings (you don't need all
+tracking, Twitter Pixel scripts. First, configure the following settings (you don't need all
 of them if they don't apply):
 
 * `GOOGLE_ANALYTICS_ID`: The ID of your Google Analytics account (UA-xxxxxx-x).
 * `GOOGLE_TAGMANAGER_ID`: The ID of your GTM account (GTM-xxxxxx).
 * `ACTIVE_CAMPAIGN_EVENT_ACTID`: The ID for your AC events (numeric)
+* `TWITTER_PIXEL_ID`: The Twitter Pixel ID
 
 Then in your template, do this:
 
@@ -61,6 +62,7 @@ Then in your template, do this:
   {% google_analytics %}
   {% google_tagmanager %}
   {% active_campaign_event_tracker %}
+  {% twitter_pixel_tracker %}
   ...
 </head>
 <body>
