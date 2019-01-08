@@ -43,7 +43,7 @@ Read on for instructions on setting up each of apps.
 ### Google Analytics/GTM/Active Campaign/Twitter Trackers
 
 This package contains template tags you can use to output GA, GTM, and AC
-tracking, Twitter Pixel scripts. First, configure the following settings (you don't need all
+tracking, Twitter Pixel scripts. First, configure the following settings in your `settings.py` (you don't need all
 of them if they don't apply):
 
 * `GOOGLE_ANALYTICS_ID`: The ID of your Google Analytics account (UA-xxxxxx-x).
