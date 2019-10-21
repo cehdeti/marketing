@@ -71,18 +71,7 @@ class Client(object):
     #########
 
     def _do_json(self, *args, **kwargs):
-        response = self._do_request(*args, **kwargs)
-
-        try:
-            return response.json()
-        except Exception as e:
-            logger.error("""
-                error calling api:
-                URL: %s
-                result: %s
-                result status %s
-                could not decode result json: %s
-            """ % (response.url, response.text, response.status_code, e))
+        return self._do_request(*args, **kwargs).json()
 
     def _do_request(self, action, method='get', **kwargs):
         params = kwargs.pop('params', {})
