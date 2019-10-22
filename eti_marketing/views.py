@@ -9,7 +9,7 @@ from .utils import get_base_template
 
 class SignupView(SuccessMessageMixin, FormView):
     template_name = 'eti_marketing/signup.html'
-    success_message = _('Thank you for signing up! We\'ll get back to you shortly.')
+    success_message = _("Thank you for signing up! We'll get back to you shortly.")
 
     def get_form_class(self):
         cls = getattr(settings, 'ETI_MARKETING_SIGNUP_FORM_CLASS', 'eti_marketing.forms.SignupForm')

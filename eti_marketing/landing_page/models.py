@@ -42,7 +42,7 @@ class LandingPage(models.Model):
     columns = models.CharField(max_length=4, choices=LAYOUTS, default=LAYOUT_FULL)
     sidebar = models.BooleanField(__('Sidebar?'), default=False)
     column_1 = RichTextField(help_text=__('This is left content box'))
-    column_2 = RichTextField(help_text=__('You don\'t have to fill this in if you have only one column'), blank=True, null=True)
+    column_2 = RichTextField(help_text=__("You don't have to fill this in if you have only one column"), blank=True, null=True)
     sidebar_text = RichTextField(help_text=__('Sidebar Text if <b>Sidebar</b> is turned on'), blank=True, null=True)
 
     cta = models.BooleanField(__('Call to Action Button?'), default=True)

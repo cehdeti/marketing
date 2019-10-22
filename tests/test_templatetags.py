@@ -15,7 +15,7 @@ class GoogleAnalyticsTests(TestCase):
         result = tags.google_analytics()
         self.assertIn('Google Analytics', result)
         self.assertIn('id=%s' % ga_id, result)
-        self.assertIn('gtag(\'config\', \'%s\')' % ga_id, result)
+        self.assertIn("gtag('config', '%s')" % ga_id, result)
 
     @mock.patch('eti_marketing.templatetags.marketing.settings')
     def test_returns_nothing_if_not(self, settings):
@@ -32,7 +32,7 @@ class GoogleTagManagerTests(TestCase):
 
         result = tags.google_tagmanager()
         self.assertIn('Google Tag Manager', result)
-        self.assertIn('(window,document,\'script\',\'dataLayer\',\'%s\')' % gtm_id, result)
+        self.assertIn("(window,document,'script','dataLayer','%s')" % gtm_id, result)
 
     @mock.patch('eti_marketing.templatetags.marketing.settings')
     def test_returns_nothing_if_not(self, settings):

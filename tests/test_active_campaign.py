@@ -83,21 +83,17 @@ class SaveContactTests(TestCase):
         self.assertEqual(kwargs['data']['id'], existing_subscriber_id)
         self.assertEqual(kwargs['data']['first_name'], 'New')
 
-    @mock.patch('builtins.print')
     @mock.patch('eti_marketing.active_campaign.requests')
-    def test_prints_and_returns_if_url_and_key_are_not_set(self, requests, mock_print):
+    def test_returns_if_url_and_key_are_not_set(self, requests):
         self.assertIsNone(ac.save_contact())
-        mock_print.assert_called_once()
         requests.assert_not_called()
 
 
 class TrackEventTests(TestCase):
 
-    @mock.patch('builtins.print')
     @mock.patch('eti_marketing.active_campaign.requests')
-    def test_prints_and_returns_if_url_and_key_are_not_set(self, requests, mock_print):
+    def test_returns_if_url_and_key_are_not_set(self, requests):
         self.assertIsNone(ac.track_event(fake.email(), fake.word()))
-        mock_print.assert_called_once()
         requests.assert_not_called()
 
     @mock.patch('eti_marketing.active_campaign.requests')
