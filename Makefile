@@ -8,7 +8,7 @@ migrations:
 	python manage.py makemigrations
 
 test:
-	python manage.py test
+	python -Wa manage.py test
 
 coverage:
 	coverage run manage.py test

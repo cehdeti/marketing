@@ -27,7 +27,7 @@ setup(
     author=['Mon Sucher', 'Jake Bell'],
     author_email='msucher@umn.edu',
     install_requires=[
-        'django<2',
+        'django',
         'django-admin-sortable2',
         'django-ckeditor',
         'pillow',
