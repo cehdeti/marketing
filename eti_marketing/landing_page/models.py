@@ -3,8 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import truncatewords
-from django.utils.translation import ugettext as _, ugettext_lazy as __
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translation import gettext as _, gettext_lazy as __
 try:
     from django.urls import reverse
 except ImportError:
@@ -19,7 +18,6 @@ class LandingPageQuerySet(models.query.QuerySet):
         return self.filter(published=True)
 
 
-@python_2_unicode_compatible
 class LandingPage(models.Model):
 
     LAYOUT_FULL = 'FULL'
