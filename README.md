@@ -12,7 +12,7 @@ Installation
 ```bash
   pip install git+https://github.com/cehdeti/marketing.git
 ```
-Don't forget to add this to `requirements.txt` if you are _not_ using `pipenv`:
+Don't forget to add this to `requirements.txt` if you are _not_ using `pipenv` or run `pip freeze > requirements.txt`:
 
 ```bash
   -e git+https://github.com/cehdeti/marketing.git#egg=eti_marketing
