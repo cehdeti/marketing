@@ -46,7 +46,7 @@ This package contains template tags you can use to output GA, GTM, and AC
 tracking, Twitter Pixel scripts. First, configure the following settings in your `settings.py` (you don't need all
 of them if they don't apply):
 
-* `GOOGLE_ANALYTICS_ID`: The ID of your Google Analytics account (UA-xxxxxx-x).
+* `GOOGLE_ANALYTICS_ID`: The ID of your Google Analytics account (G-xxxxxxxxxx).
 * `GOOGLE_TAGMANAGER_ID`: The ID of your GTM account (GTM-xxxxxx).
 * `ACTIVE_CAMPAIGN_EVENT_ACTID`: The ID for your AC events (numeric)
 * `TWITTER_PIXEL_ID`: The Twitter Pixel ID
