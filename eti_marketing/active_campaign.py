@@ -107,7 +107,7 @@ class ContactSaver(object):
                 Received ActiveCampaign submission, but API URL and/or key are not
                 set up. Here is the data:
                 Payload: %s
-                """ % payload)
+                """, payload)
             return
 
         result_data = self._client.add_contact(**payload)
@@ -155,12 +155,12 @@ class EventTracker(object):
                 Received ActiveCampaign event, but credentials are not set up.
                 Here is the data:
                 Data: %s
-                """ % payload)
+                """, payload)
             return
         else:
             payload.update(actid=self.__event_actid, key=self.__event_key)
 
-        result = requests.post('https://trackcmp.net/event', data=json.dumps([payload]))
+        result = requests.post('https://trackcmp.net/event', data=json.dumps([payload]), timeout=10)
         return json.loads(result.text)
 
 

@@ -1,7 +1,7 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    url(r'^(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='marketing-landing-page'),
+    path('<str:slug>/', views.DetailView.as_view(), name='marketing-landing-page'),
 ]

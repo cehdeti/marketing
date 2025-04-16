@@ -1,7 +1,7 @@
-from django.conf.urls import include, url
+from django.urls import include, path
 
 
 urlpatterns = [
-    url(r'^p/', include('eti_marketing.landing_page.urls')),
-    url(r'^preview/', include('eti_marketing.preview.urls')),
+    path('p/', include('eti_marketing.landing_page.urls')),
+    path('preview/', include('eti_marketing.preview.urls')),
 ]

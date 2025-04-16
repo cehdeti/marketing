@@ -94,7 +94,7 @@ specific audiences.
    into some kind of namespace.
 
 ```python
-  url(r'^p/', include('eti_marketing.landing_page.urls')),
+  path('p/', include('eti_marketing.landing_page.urls')),
 ```
 
 3. Run `python manage.py migrate` to run the database migrations.
@@ -120,7 +120,7 @@ The `preview` app provides a simple slideshow for users to preview the app. It a
 2. Tie the view to a specific URL:
 
 ```python
-  url(r'^preview/', include('eti_marketing.preview.urls')),
+  path('preview/', include('eti_marketing.preview.urls')),
 ```
 
 3. Run `python manage.py migrate` to run the database migrations.
@@ -140,11 +140,11 @@ Then, add a URL conf for the `eti_marketing.views.SignupView` view:
 ```python
 # urls.py
 
-from django.conf.urls import url
+from django.urls import path
 from eti_marketing.views import SignupView
 
 urlpatterns = [
-  url(r'^signup/$', SignupView.as_view(), name='signup'),
+  path('signup/', SignupView.as_view(), name='signup'),
 ]
 ```
 
