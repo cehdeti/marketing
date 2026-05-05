@@ -5,13 +5,12 @@ try:
 except ImportError:
     from django.core.urlresolvers import reverse
 
-from ckeditor.fields import RichTextField
-
+from django_ckeditor_5.fields import CKEditor5Field
 
 class Slide(models.Model):
 
     title = models.CharField(max_length=150, blank=True, null=True)
-    caption = RichTextField(max_length=500, blank=True, null=True)
+    caption = CKEditor5Field(max_length=500, blank=True, null=True)
     screenshot = models.ImageField(upload_to='preview')
     sortable_order = models.PositiveIntegerField(default=0)
 
@@ -30,7 +29,7 @@ class SlideWaypoint(models.Model):
 
     slide = models.ForeignKey(Slide, models.CASCADE, related_name='waypoint_set')
     title = models.CharField(max_length=150, blank=True, null=True)
-    text = RichTextField()
+    text = CKEditor5Field()
     x_position = models.FloatField()
     y_position = models.FloatField()
 

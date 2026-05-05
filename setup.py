@@ -30,6 +30,7 @@ setup(
         'django',
         'django-admin-sortable2',
         'django-ckeditor',
+        'django_ckeditor_5',
         'pillow',
         'requests'
     ],

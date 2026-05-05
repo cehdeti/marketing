@@ -86,7 +86,7 @@ specific audiences.
     ...
     'eti_marketing',
     'eti_marketing.landing_page',
-    'ckeditor',
+    'django_ckeditor_5',
   ]
 ```
 

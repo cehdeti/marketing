@@ -6,6 +6,7 @@ INSTALLED_APPS = [
     'eti_marketing.landing_page',
     'eti_marketing.preview',
     'ckeditor',
+    'django_ckeditor_5',
 ]
 
 
